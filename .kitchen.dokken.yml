@@ -1,0 +1,41 @@
+---
+driver:
+  name: dokken
+  privileged: true
+  chef_version: current
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+  deprecations_as_errors: true
+
+verifier:
+  name: inspec
+  format: doc
+  inspec_tests:
+    - test/smoke/default
+
+platforms:
+
+- name: ubuntu-14.04
+  driver:
+    image: dokken/ubuntu-14.04
+    pid_one_command: /sbin/init
+    intermediate_instructions:
+       - RUN /usr/bin/apt-get -y update
+       - RUN /usr/bin/apt-get install -y sudo
+
+- name: ubuntu-16.04
+  driver:
+    image: dokken/ubuntu-16.04
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+       - RUN /usr/bin/apt-get -y update
+       - RUN /usr/bin/apt-get install -y sudo
+
+suites:
+  - name: default
+    run_list:
+      - recipe[asdf::default]
