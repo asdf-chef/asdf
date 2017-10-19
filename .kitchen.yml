@@ -17,6 +17,6 @@ platforms:
   - name: ubuntu-16.04
 
 suites:
-  - name: default
+  - name: test
     run_list:
-      - recipe[asdf::default]
+      - recipe[test::asdf_user_install]

@@ -36,6 +36,7 @@ platforms:
        - RUN /usr/bin/apt-get install -y sudo
 
 suites:
-  - name: default
+  - name: test
     run_list:
-      - recipe[asdf::default]
+      - recipe[test::vagrant]
+      - recipe[test::asdf_user_install]

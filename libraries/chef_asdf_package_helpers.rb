@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 #
 # Cookbook:: asdf
-# Recipe:: default
+# Library:: Chef::Asdf::PackageDeps
 #
 # Copyright:: 2017, Fernando Aleman
 #
@@ -16,3 +16,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+class Chef
+  module Asdf
+    module PackageHelpers
+      def install_asdf_deps
+        apt_package %w(automake autoconf build-essential git-core grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+      end
+    end
+  end
+end

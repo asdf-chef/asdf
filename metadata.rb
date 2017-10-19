@@ -13,3 +13,5 @@ issues_url 'https://github.com/asdf-chef/asdf/issues'
 source_url 'https://github.com/asdf-chef/asdf'
 
 supports 'ubuntu', '>= 14.04'
+
+depends 'apt'
