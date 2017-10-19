@@ -2,7 +2,8 @@
 
 if defined?(ChefSpec)
   {
-    asdf_user_install: [:install]
+    asdf_user_install: [:install],
+    asdf_script: [:run]
   }.each do |resource, actions|
     actions.each do |action|
       define_method("#{action}_#{resource}") do |name|

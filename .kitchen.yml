@@ -20,3 +20,4 @@ suites:
   - name: test
     run_list:
       - recipe[test::asdf_user_install]
+      - recipe[test::asdf_script]

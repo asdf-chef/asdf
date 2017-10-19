@@ -65,6 +65,36 @@ This resource has the following properties:
 - `update_asdf` Whether or not to keep the git repo up to date. Defaults to *true*.
 - `legacy_version_file` Whether or not to use legacy version files, i.e. .ruby-version. Defaults to *false*.
 
+## asdf_script
+
+Runs an asdf aware script.
+
+```ruby
+asdf_script 'foo' do
+  user                      # Required
+  code                      # Required
+  path                      # Optional
+  environment               # Optional
+  returns                   # Optional
+  live_stream               # Optional
+end
+```
+
+### Actions
+
+This resource has the following actions:
+
+- `:run` Default. Run a script.
+
+### Properties
+
+- `user` The user to run asdf as.
+- `code` The script code to run.
+- `path` Additional path to include in environment path.
+- `environment` Environment variables to run script. Defaults to *{}*.
+- `returns` Expected return code. Defaults to *0*.
+- `live_stream` Whether or not to output verbose stream. Defaults to *false*.
+
 # Credit
 
 This cookbook is based off of the [ruby_rbenv](https://github.com/sous-chefs/ruby_rbenv) cookbook.
@@ -76,3 +106,4 @@ This cookbook is based off of the [ruby_rbenv](https://github.com/sous-chefs/rub
 ```text
 Copyright:: Fernando Aleman
 ```
+
