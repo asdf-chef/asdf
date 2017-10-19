@@ -3,6 +3,7 @@
 if defined?(ChefSpec)
   {
     asdf_user_install: [:install],
+    asdf_plugin: [:add, :update, :remove],
     asdf_script: [:run]
   }.each do |resource, actions|
     actions.each do |action|

@@ -65,6 +65,32 @@ This resource has the following properties:
 - `update_asdf` Whether or not to keep the git repo up to date. Defaults to *true*.
 - `legacy_version_file` Whether or not to use legacy version files, i.e. .ruby-version. Defaults to *false*.
 
+## asdf_plugin
+
+Installs, updates or removes an asdf plugin.
+
+```ruby
+asdf_plugin 'plugin' do
+  user                      # Required
+  git_url                   # Optional
+  live_stream               # Optional
+end
+```
+
+### Actions
+
+This resource has the following actions:
+
+- `:add` Default. Add plugin.
+- `:update` Update plugin.
+- `:remove` Remove plugin.
+
+### Properties
+
+- `user` The user to run asdf as.
+- `git_url` The git url to checkout plugin from. Defaults to the *asdf plugin repo*.
+- `live_stream` Whether or not to output verbose stream. Defaults to *false*.
+
 ## asdf_script
 
 Runs an asdf aware script.

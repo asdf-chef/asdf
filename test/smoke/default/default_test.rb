@@ -44,3 +44,22 @@ control 'asdf_user_install' do
     its('content') { should eq 'legacy_version_file = no' }
   end
 end
+
+control 'asdf_plugin' do
+  title 'Adds, updates and removed asdf plugins'
+
+  desc 'Adds and removes clojure plugin'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf plugin-list"') do
+    its('stdout') { should_not include('clojure') }
+  end
+
+  desc 'Adds nodejs plugin'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf plugin-list"') do
+    its('stdout') { should include('nodejs') }
+  end
+
+  desc 'Adds ruby plugin'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf plugin-list"') do
+    its('stdout') { should include('ruby') }
+  end
+end
