@@ -42,3 +42,4 @@ suites:
       - recipe[test::asdf_user_install]
       - recipe[test::asdf_script]
       - recipe[test::asdf_plugin]
+      - recipe[test::asdf_package]

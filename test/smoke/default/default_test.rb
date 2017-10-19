@@ -63,3 +63,29 @@ control 'asdf_plugin' do
     its('stdout') { should include('ruby') }
   end
 end
+
+control 'asdf_package' do
+  title 'Installs, uninstalls and sets global asdf packages'
+
+  desc 'Installs nodejs 8.7.0'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list nodejs"') do
+    its('stdout') { should include('8.7.0') }
+    its('exit_status') { should eq 0 }
+  end
+
+  desc 'Sets nodejs 8.7.0 to global'
+  describe file('/home/vagrant/.tool-versions') do
+    its('content') { should include('nodejs 8.7.0') }
+  end
+
+  desc 'Installs ruby 2.4.2'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list ruby"') do
+    its('stdout') { should include('2.4.2') }
+    its('exit_status') { should eq 0 }
+  end
+
+  desc 'Sets ruby 2.4.2 to global'
+  describe file('/home/vagrant/.tool-versions') do
+    its('content') { should include('ruby 2.4.2') }
+  end
+end

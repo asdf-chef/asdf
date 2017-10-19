@@ -91,6 +91,32 @@ This resource has the following actions:
 - `git_url` The git url to checkout plugin from. Defaults to the *asdf plugin repo*.
 - `live_stream` Whether or not to output verbose stream. Defaults to *false*.
 
+## asdf_package
+
+Installs, uninstalls and sets global an asdf package.
+
+```ruby
+asdf_package 'package' do
+  user                      # Required
+  version                   # Required
+  live_stream               # Optional
+end
+```
+
+### Actions
+
+This resource has the following actions:
+
+- `:install` Default. Install package.
+- `:global` Set package global.
+- `:uninsstall` Uninstall package.
+
+### Properties
+
+- `user` The user to run asdf as.
+- `version` The package version.
+- `live_stream` Whether or not to output verbose stream. Defaults to *false*.
+
 ## asdf_script
 
 Runs an asdf aware script.
