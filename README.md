@@ -1,6 +1,6 @@
 # Chef asdf cookbook
 
-[![Build Status](https://travis-ci.org/asdf-chef/asdf.svg?branch=master)](https://travis-ci.org/asdf-chef/asdf)
+[![Cookbook Version](https://img.shields.io/cookbook/v/asdf.svg)](https://supermarket.chef.io/cookbooks/asdf) [![Build Status](https://travis-ci.org/asdf-chef/asdf.svg?branch=master)](https://travis-ci.org/asdf-chef/asdf)
 
 Manages [asdf](https://github.com/asdf-vm/asdf) extendable version manager.
 
