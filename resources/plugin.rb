@@ -28,7 +28,7 @@ action :add do
     user new_resource.user
     code "asdf plugin-add #{new_resource.name} #{new_resource.git_url}".strip
     live_stream new_resource.live_stream
-    not_if { ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}") }
+    not_if { plugin_installed? }
   end
 end
 
@@ -37,7 +37,7 @@ action :update do
     user new_resource.user
     code "asdf plugin-update #{new_resource.name}"
     live_stream new_resource.live_stream
-    only_if { new_resource.name == '--all' || new_resource.name != '--all' && ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}") }
+    only_if { plugin_can_be_updated? }
   end
 end
 
@@ -46,10 +46,18 @@ action :remove do
     user new_resource.user
     code "asdf plugin-remove #{new_resource.name}"
     live_stream new_resource.live_stream
-    only_if { ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}") }
+    only_if { plugin_installed? }
   end
 end
 
 action_class do
   include Chef::Asdf::ScriptHelpers
+
+  def plugin_installed?
+    ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}")
+  end
+
+  def plugin_can_be_updated?
+    new_resource.name == '--all' || new_resource.name != '--all' && plugin_installed?
+  end
 end

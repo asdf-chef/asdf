@@ -29,75 +29,73 @@ property :update_asdf, [true, false], default: true
 property :legacy_version_file, [true, false], default: false
 
 action :install do
-  unless ::Dir.exist?(new_resource.user_prefix)
-    include_recipe 'apt'
+  include_recipe 'apt'
 
-    install_asdf_deps
+  install_asdf_deps
 
-    node.run_state['asdf_path'] ||= {}
-    node.run_state['asdf_path'][new_resource.user] ||= new_resource.user_prefix
+  node.run_state['asdf_path'] ||= {}
+  node.run_state['asdf_path'][new_resource.user] ||= new_resource.user_prefix
 
-    cookbook_file '/etc/profile.d/asdf.sh' do
-      cookbook 'asdf'
-      source 'asdf.sh'
-      owner 'root'
-      mode 0755
-      action :create_if_missing
+  cookbook_file '/etc/profile.d/asdf.sh' do
+    cookbook 'asdf'
+    source 'asdf.sh'
+    owner 'root'
+    mode 0755
+    action :create_if_missing
+  end
+
+  git new_resource.user_prefix do
+    repository new_resource.git_url
+    reference new_resource.git_ref
+    action :checkout if new_resource.update_asdf == false
+    user new_resource.user
+    group new_resource.group
+    notifies :run, 'ruby_block[Add asdf to PATH]', :immediately
+  end
+
+  directory "#{new_resource.user_prefix}/installs" do
+    owner new_resource.user
+    group new_resource.group
+    mode 0755
+  end
+
+  directory "#{new_resource.user_prefix}/plugins" do
+    owner new_resource.user
+    group new_resource.group
+    mode 0755
+  end
+
+  directory "#{new_resource.user_prefix}/shims" do
+    owner new_resource.user
+    group new_resource.group
+    mode 0755
+  end
+
+  file "#{new_resource.home_dir}/.asdfrc" do
+    content "legacy_version_file = #{new_resource.legacy_version_file ? 'yes' : 'no'}"
+    mode '0755'
+    owner new_resource.user
+    group new_resource.group
+    action :create_if_missing
+  end
+
+  ruby_block 'Add asdf to PATH' do
+    block do
+      ENV['PATH'] = "#{new_resource.user_prefix}/bin:#{new_resource.user_prefix}/shims:#{ENV['PATH']}"
     end
+    action :nothing
+  end
 
-    git new_resource.user_prefix do
-      repository new_resource.git_url
-      reference new_resource.git_ref
-      action :checkout if new_resource.update_asdf == false
-      user new_resource.user
-      group new_resource.group
-      notifies :run, 'ruby_block[Add asdf to PATH]', :immediately
-    end
+  bash "Initialize user #{new_resource.user} asdf" do
+    code %(source #{new_resource.user_prefix}/asdf.sh)
+    action :nothing
+    subscribes :run, "git[#{new_resource.user_prefix}]", :immediately
+  end
 
-    directory "#{new_resource.user_prefix}/installs" do
-      owner new_resource.user
-      group new_resource.group
-      mode 0755
-    end
-
-    directory "#{new_resource.user_prefix}/plugins" do
-      owner new_resource.user
-      group new_resource.group
-      mode 0755
-    end
-
-    directory "#{new_resource.user_prefix}/shims" do
-      owner new_resource.user
-      group new_resource.group
-      mode 0755
-    end
-
-    file "#{new_resource.home_dir}/.asdfrc" do
-      content "legacy_version_file = #{new_resource.legacy_version_file ? 'yes' : 'no'}"
-      mode '0755'
-      owner new_resource.user
-      group new_resource.group
-      action :create_if_missing
-    end
-
-    ruby_block 'Add asdf to PATH' do
-      block do
-        ENV['PATH'] = "#{new_resource.user_prefix}/bin:#{new_resource.user_prefix}/shims:#{ENV['PATH']}"
-      end
-      action :nothing
-    end
-
-    bash "Initialize user #{new_resource.user} asdf" do
-      code %(source #{new_resource.user_prefix}/asdf.sh)
-      action :nothing
-      subscribes :run, "git[#{new_resource.user_prefix}]", :immediately
-    end
-
-    bash "Initialize user #{new_resource.user} asdf bash completion" do
-      code %(source #{new_resource.user_prefix}/completions/asdf.bash)
-      action :nothing
-      subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
-    end
+  bash "Initialize user #{new_resource.user} asdf bash completion" do
+    code %(source #{new_resource.user_prefix}/completions/asdf.bash)
+    action :nothing
+    subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
   end
 end
 
