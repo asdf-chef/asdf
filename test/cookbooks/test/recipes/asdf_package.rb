@@ -13,3 +13,10 @@ asdf_package 'ruby' do
   live_stream true
   action [:install, :global]
 end
+
+asdf_package 'php' do
+  user 'vagrant'
+  version '5.6.32'
+  live_stream true
+  action [:install, :global]
+end

@@ -21,3 +21,7 @@ end
 asdf_plugin 'ruby' do
   user 'vagrant'
 end
+
+asdf_plugin 'php' do
+  user 'vagrant'
+end

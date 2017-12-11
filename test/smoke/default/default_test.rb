@@ -62,6 +62,11 @@ control 'asdf_plugin' do
   describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf plugin-list"') do
     its('stdout') { should include('ruby') }
   end
+
+  desc 'Adds php plugin'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf plugin-list"') do
+    its('stdout') { should include('php') }
+  end
 end
 
 control 'asdf_package' do
@@ -87,5 +92,16 @@ control 'asdf_package' do
   desc 'Sets ruby 2.4.2 to global'
   describe file('/home/vagrant/.tool-versions') do
     its('content') { should include('ruby 2.4.2') }
+  end
+
+  desc 'Installs php 5.6.32'
+  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list php"') do
+    its('stdout') { should include('5.6.32') }
+    its('exit_status') { should eq 0 }
+  end
+
+  desc 'Sets php 5.6.32 to global'
+  describe file('/home/vagrant/.tool-versions') do
+    its('content') { should include('php 5.6.32') }
   end
 end

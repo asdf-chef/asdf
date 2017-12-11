@@ -62,7 +62,17 @@ class Chef
         when 'openresty'
           apt_package %w(openssl libssl-dev libpcre3 libpcre3-dev)
         when 'php'
-          apt_package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev gettext bison libmysqlclient-dev libpq-dev)
+          apt_package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev gettext libmysqlclient-dev libpq-dev)
+
+          include_recipe 'ark'
+
+          # PHP 5 fails to build on Bison 3
+          ark 'bison' do
+            url 'http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz'
+            version '2.7'
+            autoconf_opts %w(--with-libiconv-prefix=/usr/local/libiconv/)
+            action :install_with_make
+          end
         when 'postgres'
           apt_package 'libreadline-dev'
         when 'python'
