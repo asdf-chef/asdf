@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.1.3](https://github.com/asdf-chef/asdf/tree/v0.1.3) (2017-12-11)
+
+* [`fa12b511b6`](https://github.com/asdf-chef/asdf/commit/fa12b511b6) - Fix bison for php installs (Fernando Aleman)
+
 ## [v0.1.2](https://github.com/asdf-chef/asdf/tree/v0.1.2) (2017-10-29)
 
 * [`ba91976dc4`](https://github.com/nodejs/node/commit/ba91976dc4) - Fix bug with node.run_state asdf_path (Fernando Aleman)
