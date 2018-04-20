@@ -21,15 +21,15 @@ class Chef
   module Asdf
     module PackageHelpers
       def install_asdf_deps
-        apt_package %w(automake autoconf build-essential git-core grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+        package %w(automake autoconf build-essential git-core grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
       end
 
-      def install_package_deps(package)
-        case package
+      def install_package_deps(p)
+        case p
         when 'R'
-          apt_package %w(libcurl3-dev libreadline-dev gfortran libxt-dev libbz2-dev liblzma-dev libpcre3 libpcre3-dev)
+          package %w(libcurl3-dev libreadline-dev gfortran libxt-dev libbz2-dev liblzma-dev libpcre3 libpcre3-dev)
         when 'clojure', 'gradle', 'sbt', 'scala'
-          apt_package 'default-jre'
+          package 'default-jre'
         when 'erlang'
           packages = %w(libncurses5-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
 
@@ -40,9 +40,9 @@ class Chef
             packages << 'libwxgtk3.0-dev'
           end
 
-          apt_package packages
+          package packages
         when 'haskell'
-          apt_package 'libgmp-dev'
+          package 'libgmp-dev'
         when 'nodejs'
           script_code = []
 
@@ -58,11 +58,11 @@ class Chef
             only_if { ::Dir.exist?("#{asdf_path}/plugins/nodejs") }
           end
         when 'ocaml'
-          apt_package 'aspcud'
+          package 'aspcud'
         when 'openresty'
-          apt_package %w(openssl libssl-dev libpcre3 libpcre3-dev)
+          package %w(openssl libssl-dev libpcre3 libpcre3-dev)
         when 'php'
-          apt_package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev gettext libmysqlclient-dev libpq-dev)
+          package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev gettext libmysqlclient-dev libpq-dev)
 
           include_recipe 'ark'
 
@@ -74,9 +74,9 @@ class Chef
             action :install_with_make
           end
         when 'postgres'
-          apt_package 'libreadline-dev'
+          package 'libreadline-dev'
         when 'python'
-          apt_package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev)
+          package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev)
         end
       end
     end
