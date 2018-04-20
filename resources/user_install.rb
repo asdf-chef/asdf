@@ -21,7 +21,7 @@ provides :asdf_user_install
 
 property :user, String, name_property: true
 property :git_url, String, default: 'https://github.com/asdf-vm/asdf.git'
-property :git_ref, String, default: 'v0.4.0'
+property :git_ref, String
 property :group, String, default: lazy { user }
 property :home_dir, String, default: lazy { ::File.expand_path("~#{user}") }
 property :user_prefix, String, default: lazy { ::File.join(home_dir, '.asdf') }
@@ -46,7 +46,7 @@ action :install do
 
   git new_resource.user_prefix do
     repository new_resource.git_url
-    reference new_resource.git_ref
+    reference new_resource.git_ref || latest_version
     action :checkout if new_resource.update_asdf == false
     user new_resource.user
     group new_resource.group
@@ -101,4 +101,14 @@ end
 
 action_class do
   include Chef::Asdf::PackageHelpers
+
+  def latest_version
+    require 'net/http'
+    require 'uri'
+
+    uri = URI.parse('https://raw.githubusercontent.com/asdf-vm/asdf/master/VERSION')
+    response = Net::HTTP.get_response(uri)
+
+    response.body.strip
+  end
 end
