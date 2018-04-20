@@ -21,7 +21,8 @@ class Chef
   module Asdf
     module PackageHelpers
       def install_asdf_deps
-        package %w(automake autoconf build-essential git-core grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+        include_recipe 'build-essential'
+        package %w(automake git-core grep libreadline-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
       end
 
       def install_package_deps(p)
@@ -31,7 +32,7 @@ class Chef
         when 'clojure', 'gradle', 'sbt', 'scala'
           package 'default-jre'
         when 'erlang'
-          packages = %w(libncurses5-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
+          packages = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
 
           case node['platform_version']
           when '14.04'
@@ -62,7 +63,7 @@ class Chef
         when 'openresty'
           package %w(openssl libssl-dev libpcre3 libpcre3-dev)
         when 'php'
-          package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev gettext libmysqlclient-dev libpq-dev)
+          package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
 
           include_recipe 'ark'
 
@@ -76,7 +77,7 @@ class Chef
         when 'postgres'
           package 'libreadline-dev'
         when 'python'
-          package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev)
+          package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
         end
       end
     end

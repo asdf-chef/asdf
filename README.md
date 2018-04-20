@@ -18,6 +18,7 @@ This cookbook requires Chef 12.9+.
 # Dependencies
 
 - apt
+- build-essential
 
 # Usage
 
