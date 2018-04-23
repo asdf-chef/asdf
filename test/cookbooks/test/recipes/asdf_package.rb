@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+apt_update 'update'
+
 asdf_package 'nodejs' do
   user 'vagrant'
   version '8.7.0'

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+apt_update 'update'
+
 asdf_plugin 'clojure' do
   user 'vagrant'
 end

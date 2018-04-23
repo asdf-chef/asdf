@@ -29,8 +29,6 @@ property :update_asdf, [true, false], default: true
 property :legacy_version_file, [true, false], default: false
 
 action :install do
-  include_recipe 'apt'
-
   install_asdf_deps
 
   node.run_state['asdf_path'] ||= {}
