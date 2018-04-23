@@ -3,50 +3,33 @@
 require 'spec_helper'
 
 describe 'test::asdf_plugin' do
-  let(:ubuntu_1404) { ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
-  let(:ubuntu_1604) { ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe) }
+  SUPPORTED_PLATFORMS.each do |platform, versions|
+    versions.each do |version|
+      let(:chef_run) do
+        ChefSpec::ServerRunner.new(platform: platform, version: version).converge(described_recipe)
+      end
 
-  context 'using ubuntu 14.04' do
-    it 'adds clojure plugin' do
-      expect(ubuntu_1404).to add_asdf_plugin('clojure')
-    end
+      context "using #{platform} #{version}" do
+        it 'adds clojure plugin' do
+          expect(chef_run).to add_asdf_plugin('clojure')
+        end
 
-    it 'removes clojure plugin' do
-      expect(ubuntu_1404).to remove_asdf_plugin('clojure')
-    end
+        it 'removes clojure plugin' do
+          expect(chef_run).to remove_asdf_plugin('clojure')
+        end
 
-    it 'adds nodejs plugin' do
-      expect(ubuntu_1404).to add_asdf_plugin('nodejs')
-    end
+        it 'adds nodejs plugin' do
+          expect(chef_run).to add_asdf_plugin('nodejs')
+        end
 
-    it 'updates nodejs plugin' do
-      expect(ubuntu_1404).to add_asdf_plugin('nodejs')
-    end
+        it 'updates nodejs plugin' do
+          expect(chef_run).to add_asdf_plugin('nodejs')
+        end
 
-    it 'adds ruby plugin' do
-      expect(ubuntu_1404).to add_asdf_plugin('ruby')
-    end
-  end
-
-  context 'using ubuntu 16.04' do
-    it 'adds clojure plugin' do
-      expect(ubuntu_1604).to add_asdf_plugin('clojure')
-    end
-
-    it 'removes clojure plugin' do
-      expect(ubuntu_1604).to remove_asdf_plugin('clojure')
-    end
-
-    it 'adds nodejs plugin' do
-      expect(ubuntu_1604).to add_asdf_plugin('nodejs')
-    end
-
-    it 'updates nodejs plugin' do
-      expect(ubuntu_1604).to add_asdf_plugin('nodejs')
-    end
-
-    it 'adds ruby plugin' do
-      expect(ubuntu_1604).to add_asdf_plugin('ruby')
+        it 'adds ruby plugin' do
+          expect(chef_run).to add_asdf_plugin('ruby')
+        end
+      end
     end
   end
 end

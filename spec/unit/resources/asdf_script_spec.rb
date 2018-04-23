@@ -3,18 +3,17 @@
 require 'spec_helper'
 
 describe 'test::asdf_script' do
-  let(:ubuntu_1404) { ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
-  let(:ubuntu_1604) { ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe) }
+  SUPPORTED_PLATFORMS.each do |platform, versions|
+    versions.each do |version|
+      let(:chef_run) do
+        ChefSpec::ServerRunner.new(platform: platform, version: version).converge(described_recipe)
+      end
 
-  context 'using ubuntu 14.04' do
-    it 'runs asdf_script to check asdf version' do
-      expect(ubuntu_1404).to run_asdf_script('asdf version')
-    end
-  end
-
-  context 'using ubuntu 16.04' do
-    it 'runs asdf_script to check asdf version' do
-      expect(ubuntu_1604).to run_asdf_script('asdf version')
+      context "using #{platform} #{version}" do
+        it 'runs asdf_script to check asdf version' do
+          expect(chef_run).to run_asdf_script('asdf version')
+        end
+      end
     end
   end
 end
