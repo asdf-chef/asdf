@@ -21,7 +21,16 @@ class Chef
   module Asdf
     module PackageHelpers
       def install_asdf_deps
-        apt_package %w(automake autoconf build-essential git-core grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+        packages = %w(automake autoconf build-essential grep libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+
+        case node['platform_version']
+        when '18.04'
+          packages << 'git'
+        else
+          packages << 'git-core'
+        end
+
+        apt_package packages
       end
 
       def install_package_deps(package)
