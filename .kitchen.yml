@@ -8,7 +8,6 @@ provisioner:
 
 verifier:
   name: inspec
-  format: doc
   inspec_tests:
     - test/smoke/default
 
