@@ -1,6 +1,18 @@
 Change Log
 ==================================================
 
+[v0.1.4](https://github.com/asdf-chef/asdf/tree/v0.1.4) (2018-10-13)
+--------------------------------------------------
+* [`d483df9822`](https://github.com/asdf-chef/asdf/commit/d483df9822) - Fix CHANGELOG (Fernando Aleman)
+* [`8971f8cbb8`](https://github.com/asdf-chef/asdf/commit/8971f8cbb8) - Fix chef inspec tests (Fernando Aleman)
+* [`659536796c`](https://github.com/asdf-chef/asdf/commit/659536796c) - Fix gpg keys for nodejs (Fernando Aleman)
+* [`b5a4e17c13`](https://github.com/asdf-chef/asdf/commit/b5a4e17c13) - Fix rubocop Style/TrailingCommaInLiteral error (Fernando Aleman)
+* [`54fa3f344d`](https://github.com/asdf-chef/asdf/commit/54fa3f344d) - Refactor spec supported platforms (Fernando Aleman)
+* [`e1db9cd123`](https://github.com/asdf-chef/asdf/commit/e1db9cd123) - Remove apt cookbook dependency (Fernando Aleman)
+* [`551302bd6b`](https://github.com/asdf-chef/asdf/commit/551302bd6b) - Add build-essential cookbook (Fernando Aleman)
+* [`648bbd4963`](https://github.com/asdf-chef/asdf/commit/648bbd4963) - Replace apt_package with package (Fernando Aleman)
+* [`287727f3c8`](https://github.com/asdf-chef/asdf/commit/287727f3c8) - Update user_install to install latest version of asdf if not specified (Fernando Aleman)
+
 [v0.1.3](https://github.com/asdf-chef/asdf/tree/v0.1.3) (2017-12-11)
 --------------------------------------------------
 * [`fa12b511b6`](https://github.com/asdf-chef/asdf/commit/fa12b511b6) - Fix bison for php installs (Fernando Aleman)
