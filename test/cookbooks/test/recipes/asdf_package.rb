@@ -4,21 +4,21 @@ apt_update 'update'
 
 asdf_package 'nodejs' do
   user 'vagrant'
-  version '8.7.0'
+  version '10.12.0'
   live_stream true
   action [:install, :global]
 end
 
 asdf_package 'ruby' do
   user 'vagrant'
-  version '2.4.2'
+  version '2.5.1'
   live_stream true
   action [:install, :global]
 end
 
 asdf_package 'php' do
   user 'vagrant'
-  version '5.6.32'
+  version '7.2.11'
   live_stream true
   action [:install, :global]
 end

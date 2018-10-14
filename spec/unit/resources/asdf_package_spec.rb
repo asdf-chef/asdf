@@ -17,6 +17,10 @@ describe 'test::asdf_package' do
         it 'installs ruby package' do
           expect(chef_run).to install_asdf_package('ruby')
         end
+
+        it 'installs php package' do
+          expect(chef_run).to install_asdf_package('php')
+        end
       end
     end
   end
