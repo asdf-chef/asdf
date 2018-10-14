@@ -4,7 +4,7 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 
 SUPPORTED_PLATFORMS = {
-  'ubuntu' => ['14.04', '16.04']
+  'ubuntu' => ['14.04', '16.04', '18.04']
 }.freeze
 
 RSpec.configure do |config|

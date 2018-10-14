@@ -22,7 +22,7 @@ class Chef
     module PackageHelpers
       def install_asdf_deps
         include_recipe 'build-essential'
-        package %w(automake git-core grep libreadline-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+        package %w(automake git grep libreadline-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
       end
 
       def install_package_deps(p)
@@ -56,7 +56,27 @@ class Chef
         when 'openresty'
           package %w(openssl libssl-dev libpcre3 libpcre3-dev)
         when 'php'
-          package %w(curl libjpeg-dev libpng12-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsslcommon2-dev libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
+          packages = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
+
+          case node['platform_version']
+          when '14.04'
+            packages << 'libpng12-dev'
+          when '16.04'
+            packages << 'libpng16-dev'
+          when '18.04'
+            # Fix for PHP bug
+            link '/usr/local/include/curl' do
+              to '/usr/include/x86_64-linux-gnu/curl'
+            end
+
+            packages << 'libcurl4' << 'libpng-dev' << 're2c'
+          end
+
+          package packages
+
+          package 'bison' do
+            action :purge
+          end
 
           include_recipe 'ark'
 
