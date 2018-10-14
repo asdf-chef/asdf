@@ -8,8 +8,6 @@ provisioner:
 
 verifier:
   name: inspec
-  inspec_tests:
-    - test/smoke/default
 
 platforms:
   - name: ubuntu-14.04
@@ -23,3 +21,12 @@ suites:
       - recipe[test::asdf_script]
       - recipe[test::asdf_plugin]
       - recipe[test::asdf_package]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+  - name: ruby
+    run_list:
+      - recipe[test::ruby]
+    verifier:
+      inspec_tests:
+        - test/smoke/ruby

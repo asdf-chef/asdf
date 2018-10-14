@@ -91,6 +91,11 @@ class Chef
           package 'libreadline-dev'
         when 'python'
           package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
+        when 'ruby'
+          case node['platform_version']
+          when '18.04'
+            package 'libssl1.0-dev'
+          end
         end
       end
     end
