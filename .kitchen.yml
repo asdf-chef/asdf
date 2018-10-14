@@ -10,23 +10,23 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-14.04
-  - name: ubuntu-16.04
-  - name: ubuntu-18.04
+- name: ubuntu-14.04
+- name: ubuntu-16.04
+- name: ubuntu-18.04
 
 suites:
-  - name: test
-    run_list:
-      - recipe[test::asdf_user_install]
-      - recipe[test::asdf_script]
-      - recipe[test::asdf_plugin]
-      - recipe[test::asdf_package]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-  - name: ruby
-    run_list:
-      - recipe[test::ruby]
-    verifier:
-      inspec_tests:
-        - test/smoke/ruby
+- name: test
+  run_list:
+  - recipe[test::asdf_user_install]
+  - recipe[test::asdf_script]
+  - recipe[test::asdf_plugin]
+  - recipe[test::asdf_package]
+  verifier:
+    inspec_tests:
+    - test/smoke/default
+- name: ruby
+  run_list:
+  - recipe[test::ruby]
+  verifier:
+    inspec_tests:
+    - test/smoke/ruby

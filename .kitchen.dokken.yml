@@ -13,40 +13,42 @@ provisioner:
 
 verifier:
   name: inspec
-  inspec_tests:
-    - test/smoke/default
 
 platforms:
-
 - name: ubuntu-14.04
   driver:
     image: dokken/ubuntu-14.04
     pid_one_command: /sbin/init
     intermediate_instructions:
-       - RUN /usr/bin/apt-get -y update
-       - RUN /usr/bin/apt-get install -y sudo
-
+    - RUN /usr/bin/apt-get -y update
+    - RUN /usr/bin/apt-get install -y sudo
 - name: ubuntu-16.04
   driver:
     image: dokken/ubuntu-16.04
     pid_one_command: /bin/systemd
     intermediate_instructions:
-       - RUN /usr/bin/apt-get -y update
-       - RUN /usr/bin/apt-get install -y sudo
-
+    - RUN /usr/bin/apt-get -y update
+    - RUN /usr/bin/apt-get install -y sudo
 - name: ubuntu-18.04
   driver:
     image: dokken/ubuntu-18.04
     pid_one_command: /bin/systemd
     intermediate_instructions:
-       - RUN /usr/bin/apt-get -y update
-       - RUN /usr/bin/apt-get install -y sudo
+    - RUN /usr/bin/apt-get -y update
+    - RUN /usr/bin/apt-get install -y sudo
 
 suites:
-  - name: test
-    run_list:
-      - recipe[test::vagrant]
-      - recipe[test::asdf_user_install]
-      - recipe[test::asdf_script]
-      - recipe[test::asdf_plugin]
-      - recipe[test::asdf_package]
+- name: test
+  run_list:
+  - recipe[test::vagrant]
+  - recipe[test::asdf_user_install]
+  - recipe[test::asdf_script]
+  - recipe[test::asdf_plugin]
+  - recipe[test::asdf_package]
+- name: ruby
+  run_list:
+  - recipe[test::vagrant]
+  - recipe[test::ruby]
+  verifier:
+    inspec_tests:
+    - test/smoke/ruby
