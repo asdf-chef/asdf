@@ -1,6 +1,11 @@
 Change Log
 ==================================================
 
+[v0.2.0](https://github.com/asdf-chef/asdf/tree/v0.2.0) (2018-10-13)
+--------------------------------------------------
+* [`e28e7a1fdb`](https://github.com/asdf-chef/asdf/commit/e28e7a1fdb) - Support Ubuntu 18.04 (Fernando Aleman)
+* [`960931d222`](https://github.com/asdf-chef/asdf/commit/960931d222) - Update test package versions (Fernando Aleman)
+
 [v0.1.4](https://github.com/asdf-chef/asdf/tree/v0.1.4) (2018-10-13)
 --------------------------------------------------
 * [`d483df9822`](https://github.com/asdf-chef/asdf/commit/d483df9822) - Fix CHANGELOG (Fernando Aleman)
