@@ -34,10 +34,9 @@ class Chef
         when 'erlang'
           packages = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
 
-          case node['platform_version']
-          when '14.04'
+          if ubuntu_trusty?
             packages << 'libwxgtk2.8-dev'
-          when '16.04'
+          elsif ubuntu_xenial? || ubuntu_bionic?
             packages << 'libwxgtk3.0-dev'
           end
 
@@ -58,12 +57,11 @@ class Chef
         when 'php'
           packages = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
 
-          case node['platform_version']
-          when '14.04'
+          if ubuntu_trusty?
             packages << 'libpng12-dev'
-          when '16.04'
+          elsif ubuntu_xenial?
             packages << 'libpng16-dev'
-          when '18.04'
+          elsif ubuntu_bionic?
             # Fix for PHP bug
             link '/usr/local/include/curl' do
               to '/usr/include/x86_64-linux-gnu/curl'
@@ -92,8 +90,7 @@ class Chef
         when 'python'
           package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
         when 'ruby'
-          case node['platform_version']
-          when '18.04'
+          if ubuntu_bionic?
             package 'libssl1.0-dev'
           end
         end
