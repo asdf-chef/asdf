@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-user 'vagrant'
+user 'vagrant' do
+  shell '/bin/bash'
+end
 
 group 'vagrant' do
   members 'vagrant'
