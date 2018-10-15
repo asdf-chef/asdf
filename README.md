@@ -110,7 +110,7 @@ This resource has the following actions:
 
 - `:install` Default. Install package.
 - `:global` Set package global.
-- `:uninsstall` Uninstall package.
+- `:uninstall` Uninstall package.
 
 ### Properties
 
