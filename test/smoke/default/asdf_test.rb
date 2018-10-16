@@ -72,17 +72,6 @@ end
 control 'asdf_package' do
   title 'Installs, uninstalls and sets global asdf packages'
 
-  desc 'Installs nodejs 10.12.0'
-  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list nodejs"') do
-    its('stdout') { should include('10.12.0') }
-    its('exit_status') { should eq 0 }
-  end
-
-  desc 'Sets nodejs 10.12.0 to global'
-  describe file('/home/vagrant/.tool-versions') do
-    its('content') { should include('nodejs 10.12.0') }
-  end
-
   desc 'Installs ruby 2.5.1'
   describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list ruby"') do
     its('stdout') { should include('2.5.1') }
@@ -92,16 +81,5 @@ control 'asdf_package' do
   desc 'Sets ruby 2.5.1 to global'
   describe file('/home/vagrant/.tool-versions') do
     its('content') { should include('ruby 2.5.1') }
-  end
-
-  desc 'Installs php 7.2.11'
-  describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && asdf list php"') do
-    its('stdout') { should include('7.2.11') }
-    its('exit_status') { should eq 0 }
-  end
-
-  desc 'Sets php 7.2.11 to global'
-  describe file('/home/vagrant/.tool-versions') do
-    its('content') { should include('php 7.2.11') }
   end
 end

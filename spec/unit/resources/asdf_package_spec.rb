@@ -10,16 +10,8 @@ describe 'test::asdf_package' do
       end
 
       context "using #{platform} #{version}" do
-        it 'installs nodejs package' do
-          expect(chef_run).to install_asdf_package('nodejs')
-        end
-
         it 'installs ruby package' do
           expect(chef_run).to install_asdf_package('ruby')
-        end
-
-        it 'installs php package' do
-          expect(chef_run).to install_asdf_package('php')
         end
       end
     end

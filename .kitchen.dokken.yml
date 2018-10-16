@@ -45,10 +45,6 @@ suites:
   - recipe[test::asdf_script]
   - recipe[test::asdf_plugin]
   - recipe[test::asdf_package]
-- name: ruby
-  run_list:
-  - recipe[test::vagrant]
-  - recipe[test::ruby]
   verifier:
     inspec_tests:
-    - test/smoke/ruby
+    - test/smoke/default/asdf_test.rb
