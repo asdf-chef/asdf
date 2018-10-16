@@ -1,6 +1,17 @@
 Change Log
 ==================================================
 
+[v0.2.1](https://github.com/asdf-chef/asdf/tree/v0.2.1) (2018-10-16)
+--------------------------------------------------
+* [`15d9c71206`](https://github.com/asdf-chef/asdf/commit/15d9c71206) - Merge pull request #2 from blimmer/patch-1 (Fernando Aleman)
+* [`6563c4e669`](https://github.com/asdf-chef/asdf/commit/6563c4e669) - Correct asdf_package action typo. (Ben Limmer)
+* [`02798d9323`](https://github.com/asdf-chef/asdf/commit/02798d9323) - Fix rubocop offense on if modifier (Fernando Aleman)
+* [`ade79342ff`](https://github.com/asdf-chef/asdf/commit/ade79342ff) - Fix test vagrant user shell (Fernando Aleman)
+* [`3c2f7e8174`](https://github.com/asdf-chef/asdf/commit/3c2f7e8174) - Add chef-sugar cookbook (Fernando Aleman)
+* [`876460d4d8`](https://github.com/asdf-chef/asdf/commit/876460d4d8) - Update kitchen config files (Fernando Aleman)
+* [`d53d5c11b4`](https://github.com/asdf-chef/asdf/commit/d53d5c11b4) - Fix building older versions of ruby on Ubuntu 18.04 (Fernando Aleman)
+* [`c7585a0c83`](https://github.com/asdf-chef/asdf/commit/c7585a0c83) - Add Travis CI Ubuntu 18.04 matrix (Fernando Aleman)
+
 [v0.2.0](https://github.com/asdf-chef/asdf/tree/v0.2.0) (2018-10-13)
 --------------------------------------------------
 * [`e28e7a1fdb`](https://github.com/asdf-chef/asdf/commit/e28e7a1fdb) - Support Ubuntu 18.04 (Fernando Aleman)
