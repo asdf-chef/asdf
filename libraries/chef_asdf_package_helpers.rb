@@ -24,7 +24,7 @@ class Chef
         include_recipe 'build-essential'
         package %w(automake git grep libtool mlocate unzip)
 
-        if redhat?
+        if redhat? || fedora?
           execute 'updatedb'
           package %w(bzip2 libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
         elsif debian?
@@ -35,19 +35,19 @@ class Chef
       def install_package_deps(p)
         case p
         when 'R'
-          if redhat?
+          if redhat? || fedora?
             package %w(libcurl-devel libgfortran libXt-devel pcre2 pcre2-devel xz-devel)
           elsif debian?
             package %w(gfortran libbz2-dev libcurl3-dev liblzma-dev libpcre3 libpcre3-dev libxt-dev)
           end
         when 'clojure', 'gradle', 'sbt', 'scala'
-          if redhat?
+          if redhat? || fedora?
             package 'java-1.8.0-openjdk'
           elsif debian?
             package 'default-jre'
           end
         when 'erlang'
-          if redhat?
+          if redhat? || fedora?
             package %w(gcc gcc-c++ glibc-devel java-1.8.0-openjdk-devel ncurses-devel openssl-devel wget wxBase.x86_64)
           elsif debian?
             packages = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
@@ -61,7 +61,7 @@ class Chef
 
           package packages
         when 'haskell'
-          if redhat?
+          if redhat? || fedora?
             package 'gmp-devel'
           elsif debian?
             package 'libgmp-dev'
@@ -76,13 +76,13 @@ class Chef
         when 'ocaml'
           package 'aspcud' if debian?
         when 'openresty'
-          if redhat?
+          if redhat? || fedora?
             package %w(openssl openssl-devel pcre2 pcre2-devel)
           elsif debian?
             package %w(openssl libssl-dev libpcre3 libpcre3-dev)
           end
         when 'php'
-          if redhat?
+          if redhat? || fedora?
             package %w(libcurl libcurl-devel libcxx libcxx-devel libjpeg-turbo-devel libpng-devel openssl openssl-devel re2c readline-devel libedit-devel zlib-devel libicu-devel libxml2-devel postgresql-libs)
           elsif debian?
             packages = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
@@ -118,13 +118,13 @@ class Chef
           end
 
         when 'postgres'
-          if redhat?
+          if redhat? || fedora?
             package 'readline-devel'
           elsif debian?
             package 'libreadline-dev'
           end
         when 'python'
-          if redhat?
+          if redhat? || fedora?
             package %w(openssl-dev zlib-devel readline-devel sqlite-devel wget curl llvm)
           elsif debian?
             package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
