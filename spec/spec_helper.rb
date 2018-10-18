@@ -4,7 +4,10 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 
 SUPPORTED_PLATFORMS = {
+  # rubocop:disable Style/WordArray
+  'centos' => ['7'],
   'ubuntu' => ['14.04', '16.04', '18.04']
+  # rubocop:enable Style/WordArray
 }.freeze
 
 RSpec.configure do |config|

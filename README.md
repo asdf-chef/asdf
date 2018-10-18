@@ -12,6 +12,7 @@ This cookbook requires Chef 12.9+.
 
 ## Platforms
 
+- CentOS 7
 - Ubuntu 14.04
 - Ubuntu 16.04
 - Ubuntu 18.04

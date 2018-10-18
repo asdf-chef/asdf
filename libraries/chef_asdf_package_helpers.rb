@@ -22,27 +22,50 @@ class Chef
     module PackageHelpers
       def install_asdf_deps
         include_recipe 'build-essential'
-        package %w(automake git grep libreadline-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip)
+        package %w(automake git grep libtool mlocate unzip)
+
+        if centos?
+          execute 'updatedb'
+          package %w(bzip2 libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
+        elsif debian?
+          package %w(libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
+        end
       end
 
       def install_package_deps(p)
         case p
         when 'R'
-          package %w(libcurl3-dev libreadline-dev gfortran libxt-dev libbz2-dev liblzma-dev libpcre3 libpcre3-dev)
+          if centos?
+            package %w(libcurl-devel libgfortran libXt-devel pcre2 pcre2-devel xz-devel)
+          elsif debian?
+            package %w(gfortran libbz2-dev libcurl3-dev liblzma-dev libpcre3 libpcre3-dev libxt-dev)
+          end
         when 'clojure', 'gradle', 'sbt', 'scala'
-          package 'default-jre'
+          if centos?
+            package 'java-1.8.0-openjdk'
+          elsif debian?
+            package 'default-jre'
+          end
         when 'erlang'
-          packages = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
+          if centos?
+            package %w(gcc gcc-c++ glibc-devel java-1.8.0-openjdk-devel ncurses-devel openssl-devel wget wxBase.x86_64)
+          elsif debian?
+            packages = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
 
-          if ubuntu_trusty?
-            packages << 'libwxgtk2.8-dev'
-          elsif ubuntu_xenial? || ubuntu_bionic?
-            packages << 'libwxgtk3.0-dev'
+            if ubuntu_trusty?
+              packages << 'libwxgtk2.8-dev'
+            elsif ubuntu_xenial? || ubuntu_bionic?
+              packages << 'libwxgtk3.0-dev'
+            end
           end
 
           package packages
         when 'haskell'
-          package 'libgmp-dev'
+          if centos?
+            package 'gmp-devel'
+          elsif debian?
+            package 'libgmp-dev'
+          end
         when 'nodejs'
           asdf_script 'install nodejs package dependencies' do
             user new_resource.user
@@ -51,44 +74,61 @@ class Chef
             only_if { ::Dir.exist?("#{asdf_path}/plugins/nodejs") }
           end
         when 'ocaml'
-          package 'aspcud'
+          package 'aspcud' if debian?
         when 'openresty'
-          package %w(openssl libssl-dev libpcre3 libpcre3-dev)
+          if centos?
+            package %w(openssl openssl-devel pcre2 pcre2-devel)
+          elsif debian?
+            package %w(openssl libssl-dev libpcre3 libpcre3-dev)
+          end
         when 'php'
-          packages = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
+          if centos?
+            package %w(libcurl libcurl-devel libcxx libcxx-devel libjpeg-turbo-devel libpng-devel openssl openssl-devel re2c readline-devel libedit-devel zlib-devel libicu-devel libxml2-devel postgresql-libs)
+          elsif debian?
+            packages = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
 
-          if ubuntu_trusty?
-            packages << 'libpng12-dev'
-          elsif ubuntu_xenial?
-            packages << 'libpng16-dev'
-          elsif ubuntu_bionic?
-            # Fix for PHP bug
-            link '/usr/local/include/curl' do
-              to '/usr/include/x86_64-linux-gnu/curl'
+            if ubuntu_trusty?
+              packages << 'libpng12-dev'
+            elsif ubuntu_xenial?
+              packages << 'libpng16-dev'
+            elsif ubuntu_bionic?
+              # Fix for PHP bug
+              link '/usr/local/include/curl' do
+                to '/usr/include/x86_64-linux-gnu/curl'
+              end
+
+              packages << 'libcurl4' << 'libpng-dev' << 're2c'
             end
 
-            packages << 'libcurl4' << 'libpng-dev' << 're2c'
+            package packages
+
+            package 'bison' do
+              action :purge
+            end
+
+            include_recipe 'ark'
+
+            # PHP 5 fails to build on Bison 3
+            ark 'bison' do
+              url 'http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz'
+              version '2.7'
+              autoconf_opts %w(--with-libiconv-prefix=/usr/local/libiconv/)
+              action :install_with_make
+            end
           end
 
-          package packages
-
-          package 'bison' do
-            action :purge
-          end
-
-          include_recipe 'ark'
-
-          # PHP 5 fails to build on Bison 3
-          ark 'bison' do
-            url 'http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz'
-            version '2.7'
-            autoconf_opts %w(--with-libiconv-prefix=/usr/local/libiconv/)
-            action :install_with_make
-          end
         when 'postgres'
-          package 'libreadline-dev'
+          if centos?
+            package 'readline-devel'
+          elsif debian?
+            package 'libreadline-dev'
+          end
         when 'python'
-          package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
+          if centos?
+            package %w(openssl-dev zlib-devel readline-devel sqlite-devel wget curl llvm)
+          elsif debian?
+            package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
+          end
         when 'ruby'
           package 'libssl1.0-dev' if ubuntu_bionic?
         end

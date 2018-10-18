@@ -12,6 +12,7 @@ chef_version '>= 12.9' if respond_to?(:chef_version)
 issues_url 'https://github.com/asdf-chef/asdf/issues'
 source_url 'https://github.com/asdf-chef/asdf'
 
+supports 'centos', '>= 7'
 supports 'ubuntu', '>= 14.04'
 
 depends 'build-essential'

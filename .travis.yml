@@ -18,6 +18,7 @@ services: docker
 
 env:
   matrix:
+  - INSTANCE=test-centos-7
   - INSTANCE=test-ubuntu-1404
   - INSTANCE=test-ubuntu-1604
   - INSTANCE=test-ubuntu-1804

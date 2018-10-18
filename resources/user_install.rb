@@ -95,6 +95,11 @@ action :install do
     action :nothing
     subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
   end
+
+  link '/usr/bin/shasum' do
+    to '/usr/bin/sha1sum'
+    not_if 'test -L /usr/bin/shasum'
+  end if platform_family?('rhel')
 end
 
 action_class do
