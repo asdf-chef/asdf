@@ -103,7 +103,8 @@ This resource has the following actions:
 
 ### asdf_package
 
-Installs, uninstalls and sets global an asdf package.
+Installs, uninstalls and sets global an asdf package. **See [Package
+Dependencies](#package-dependencies) below.**
 
 ```ruby
 asdf_package 'package' do
@@ -156,6 +157,15 @@ This resource has the following actions:
 - `environment` Environment variables to run script. Defaults to *{}*.
 - `returns` Expected return code. Defaults to *0*.
 - `live_stream` Whether or not to output verbose stream. Defaults to *false*.
+
+## Package Dependencies
+
+Although this cookbook is slowly but surely trying to make sure that
+dependencies are installed for each package on all supported operating systems,
+you may still need to add dependencies that have not been pre-installed for a
+particular package. If you do indeed get a package installed with dependencies
+that have not yet been pre-installed via this cookbook, please open up a pull
+request for review to be added.
 
 ## Credit
 
