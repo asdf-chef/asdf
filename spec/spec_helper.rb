@@ -6,6 +6,7 @@ require 'chefspec/berkshelf'
 SUPPORTED_PLATFORMS = {
   # rubocop:disable Style/WordArray
   'centos' => ['7'],
+  'debian' => ['8', '9'],
   'fedora' => ['27', '28'],
   'ubuntu' => ['14.04', '16.04', '18.04']
   # rubocop:enable Style/WordArray

@@ -130,6 +130,7 @@ class Chef
             package %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
           end
         when 'ruby'
+          package 'zlib1g-dev' if debian?
           package 'libssl1.0-dev' if ubuntu_bionic?
         end
       end

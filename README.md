@@ -15,6 +15,8 @@ This cookbook requires Chef 12.9+.
 The following platforms are supported and tested with Test Kitchen:
 
 - CentOS 7
+- Debian 8
+- Debian 9
 - Fedora 27
 - Fedora 28
 - Ubuntu 14.04

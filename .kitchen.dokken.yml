@@ -21,6 +21,18 @@ platforms:
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
     - RUN /usr/bin/yum -y update
+- name: debian-8
+  driver:
+    image: dokken/debian-8
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+- name: debian-9
+  driver:
+    image: dokken/debian-9
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+      - RUN /usr/bin/apt-get update
 - name: fedora-27
   driver:
     image: dokken/fedora-27

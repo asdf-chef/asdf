@@ -13,6 +13,7 @@ issues_url 'https://github.com/asdf-chef/asdf/issues'
 source_url 'https://github.com/asdf-chef/asdf'
 
 supports 'centos', '>= 7'
+supports 'debian', '>= 8'
 supports 'fedora', '>= 27'
 supports 'oracle', '>= 7'
 supports 'redhat', '>= 7'
