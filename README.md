@@ -1,27 +1,31 @@
-# Chef asdf cookbook
+# asdf Cookbook
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/asdf.svg)](https://supermarket.chef.io/cookbooks/asdf) [![Build Status](https://travis-ci.org/asdf-chef/asdf.svg?branch=master)](https://travis-ci.org/asdf-chef/asdf)
 
 Manages [asdf](https://github.com/asdf-vm/asdf) extendable version manager.
 
-# Requirements
+## Requirements
 
-## Chef
+### Chef
 
 This cookbook requires Chef 12.9+.
 
-## Platforms
+### Platforms
+
+The following platforms are supported and tested with Test Kitchen:
 
 - CentOS 7
 - Ubuntu 14.04
 - Ubuntu 16.04
 - Ubuntu 18.04
 
-# Dependencies
+Other Debian and RHEL family distributions are assumed to work.
+
+## Dependencies
 
 - build-essential
 
-# Usage
+## Usage
 
 Place a dependency on the asdf cookbook in your cookbook's metadata.rb
 
@@ -33,13 +37,13 @@ Examples are provided in `test/cookbooks/test/recipes`.
 
 A `asdf_user_install` is required so that asdf is installed. See `Resources` below.
 
-# Testing
+## Testing
 
 For more details look at the [TESTING.md](./TESTING.md).
 
-# Resources
+## Resources
 
-## asdf_user_install
+### asdf_user_install
 
 Installs asdf to the user path, making asdf only available to that user.
 
@@ -52,13 +56,13 @@ asdf_user_install 'user' do
 end
 ```
 
-### Actions
+#### _Actions_
 
 This resource has the following actions:
 
 - `:install` Default. Install asdf.
 
-### Properties
+#### _Properties_
 
 This resource has the following properties:
 
@@ -67,7 +71,7 @@ This resource has the following properties:
 - `update_asdf` Whether or not to keep the git repo up to date. Defaults to *true*.
 - `legacy_version_file` Whether or not to use legacy version files, i.e. .ruby-version. Defaults to *false*.
 
-## asdf_plugin
+### asdf_plugin
 
 Installs, updates or removes an asdf plugin.
 
@@ -79,7 +83,7 @@ asdf_plugin 'plugin' do
 end
 ```
 
-### Actions
+#### _Actions_
 
 This resource has the following actions:
 
@@ -87,13 +91,13 @@ This resource has the following actions:
 - `:update` Update plugin.
 - `:remove` Remove plugin.
 
-### Properties
+#### _Properties_
 
 - `user` The user to run asdf as.
 - `git_url` The git url to checkout plugin from. Defaults to the *asdf plugin repo*.
 - `live_stream` Whether or not to output verbose stream. Defaults to *false*.
 
-## asdf_package
+### asdf_package
 
 Installs, uninstalls and sets global an asdf package.
 
@@ -105,7 +109,7 @@ asdf_package 'package' do
 end
 ```
 
-### Actions
+#### _Actions_
 
 This resource has the following actions:
 
@@ -113,13 +117,13 @@ This resource has the following actions:
 - `:global` Set package global.
 - `:uninstall` Uninstall package.
 
-### Properties
+#### _Properties_
 
 - `user` The user to run asdf as.
 - `version` The package version.
 - `live_stream` Whether or not to output verbose stream. Defaults to *false*.
 
-## asdf_script
+### asdf_script
 
 Runs an asdf aware script.
 
@@ -134,13 +138,13 @@ asdf_script 'foo' do
 end
 ```
 
-### Actions
+#### _Actions_
 
 This resource has the following actions:
 
 - `:run` Default. Run a script.
 
-### Properties
+#### _Properties_
 
 - `user` The user to run asdf as.
 - `code` The script code to run.
@@ -149,15 +153,14 @@ This resource has the following actions:
 - `returns` Expected return code. Defaults to *0*.
 - `live_stream` Whether or not to output verbose stream. Defaults to *false*.
 
-# Credit
+## Credit
 
 This cookbook is based off of the [ruby_rbenv](https://github.com/sous-chefs/ruby_rbenv) cookbook.
 
-# Authors
+## Authors
 
 - Author:: Fernando Aleman <fernandoaleman@mac.com>
 
 ```text
 Copyright:: Fernando Aleman
 ```
-
