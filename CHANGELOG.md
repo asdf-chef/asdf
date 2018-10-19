@@ -1,6 +1,14 @@
 Change Log
 ==================================================
 
+[v0.3.0](https://github.com/asdf-chef/asdf/tree/v0.3.0) (2018-10-19)
+* [`029a87eb90`](https://github.com/asdf-chef/asdf/commit/029a87eb90) - Package dependencies (Fernando Aleman)
+* [`20e2a26a69`](https://github.com/asdf-chef/asdf/commit/20e2a26a69) - Add support for Debian 8 & 9 (Fernando Aleman)
+* [`43017dea07`](https://github.com/asdf-chef/asdf/commit/43017dea07) - Add support for Fedora 27 & 28 (Fernando Aleman)
+* [`c166bc66ba`](https://github.com/asdf-chef/asdf/commit/c166bc66ba) - Add implied support for redhat, scientific and oracle linux (Fernando Aleman)
+* [`ea6fa1e826`](https://github.com/asdf-chef/asdf/commit/ea6fa1e826) - Add support for CentOS 7 (Fernando Aleman)
+* [`cd4179e6fa`](https://github.com/asdf-chef/asdf/commit/cd4179e6fa) - Restructure tests in order to test packages separately (Fernando Aleman)
+
 [v0.2.1](https://github.com/asdf-chef/asdf/tree/v0.2.1) (2018-10-16)
 --------------------------------------------------
 * [`15d9c71206`](https://github.com/asdf-chef/asdf/commit/15d9c71206) - Merge pull request #2 from blimmer/patch-1 (Fernando Aleman)
