@@ -21,8 +21,8 @@ env:
   - INSTANCE=package-centos-7
   - INSTANCE=package-debian-8
   - INSTANCE=package-debian-9
+  - INSTANCE=package-fedora-27
   - INSTANCE=package-fedora-28
-  - INSTANCE=package-fedora-29
   - INSTANCE=package-ubuntu-1604
   - INSTANCE=package-ubuntu-1804
   - INSTANCE=plugin-centos-7
@@ -35,15 +35,15 @@ env:
   - INSTANCE=script-centos-7
   - INSTANCE=script-debian-8
   - INSTANCE=script-debian-9
+  - INSTANCE=script-fedora-27
   - INSTANCE=script-fedora-28
-  - INSTANCE=script-fedora-29
   - INSTANCE=script-ubuntu-1604
   - INSTANCE=script-ubuntu-1804
   - INSTANCE=user-install-centos-7
   - INSTANCE=user-install-debian-8
   - INSTANCE=user-install-debian-9
+  - INSTANCE=user-install-fedora-27
   - INSTANCE=user-install-fedora-28
-  - INSTANCE=user-install-fedora-29
   - INSTANCE=user-install-ubuntu-1604
   - INSTANCE=user-install-ubuntu-1804
 
