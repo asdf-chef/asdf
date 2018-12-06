@@ -110,12 +110,13 @@ Runs an asdf aware script.
 
 ```ruby
 asdf_script 'name' do
-  user                      String
   code                      String
-  path                      String
   environment               Hash
+  live_stream               [TrueClass, FalseClass]
+  path                      String
   returns                   Array
-  live_stream               TrueClass, FalseClass
+  timeout                   [Integer, Float]
+  user                      String
 end
 ```
 
@@ -129,12 +130,13 @@ This resource has the following actions:
 
 This resource has the following properties:
 
-- `user` The user to run asdf as. *Required*.
-- `code` The script code to run. *Required*.
-- `path` Additional path to include in environment path.
+- `code` asdf command to run. Default `name`.
 - `environment` Environment variables to run script.
-- `returns` Expected return code. Defaults to `[0]`.
 - `live_stream` Whether or not to output verbose stream. Defaults to `false`.
+- `path` Additional path to include in environment path.
+- `returns` Expected return code. Defaults to `[0]`.
+- `timeout` Amount of time (in seconds) a command is to wait before timing out. Defaults to `3600`.
+- `user` Which user to run asdf code as.
 
 ### asdf_user_install
 

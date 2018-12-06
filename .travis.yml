@@ -25,6 +25,13 @@ env:
   - INSTANCE=test-fedora-28
   - INSTANCE=test-ubuntu-1604
   - INSTANCE=test-ubuntu-1804
+  - INSTANCE=script-centos-7
+  - INSTANCE=script-debian-8
+  - INSTANCE=script-debian-9
+  - INSTANCE=script-fedora-28
+  - INSTANCE=script-fedora-29
+  - INSTANCE=script-ubuntu-1604
+  - INSTANCE=script-ubuntu-1804
   - INSTANCE=user-install-centos-7
   - INSTANCE=user-install-debian-8
   - INSTANCE=user-install-debian-9

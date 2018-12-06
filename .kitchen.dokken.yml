@@ -82,12 +82,15 @@ suites:
 - name: test
   run_list:
   - recipe[test::user_install]
-  - recipe[test::asdf_script]
   - recipe[test::asdf_plugin]
   - recipe[test::asdf_package]
   verifier:
     inspec_tests:
     - test/smoke/default/asdf_test.rb
+
+- name: script
+  run_list:
+  - recipe[test::script]
 
 - name: user_install
   run_list:

@@ -2,44 +2,45 @@
 # Cookbook:: asdf
 # Resource:: script
 #
-# Copyright:: 2017, Fernando Aleman
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
 
 provides :asdf_script
 
-property :user, String
-property :code, String, required: true
-property :creates, String
-property :path, Array
-property :environment, Hash
-property :returns, Array, default: [0]
-property :timeout, Integer
-property :umask, [String, Integer]
-property :live_stream, [true, false], default: false
+property :code, String,
+         description: 'asdf command to run.',
+         name_property: true
+
+property :environment, Hash,
+         description: 'Environment variables to run script.'
+
+property :live_stream, [true, false],
+         default: false,
+         description: 'Whether or not to output verbose stream.'
+
+property :path, Array,
+         description: 'Additional path to include in environment path.'
+
+property :returns, Array,
+         default: [0],
+         description: 'Expected return code.'
+
+property :timeout, [Integer, Float],
+         default: 3600,
+         description: 'Amount of time (in seconds) a command is to wait before timing out.'
+
+property :user, String,
+         description: 'Which user to run asdf code as.'
 
 action :run do
   bash new_resource.name do
     code script_code
-    user asdf_user
-    group asdf_user
     cwd ::File.expand_path("~#{asdf_user}")
-    creates new_resource.creates if new_resource.creates
     environment(script_environment)
+    group asdf_user
+    live_stream new_resource.live_stream
     returns new_resource.returns
     timeout new_resource.timeout if new_resource.timeout
-    umask new_resource.umask if new_resource.umask
-    live_stream new_resource.live_stream
+    user asdf_user
   end
 end
 
@@ -47,10 +48,16 @@ action_class do
   include Asdf::ScriptHelpers
 
   def script_code
+    code = if /^asdf\s/ =~ new_resource.code
+             new_resource.code.split(' ').drop(1).join(' ')
+           else
+             new_resource.code
+           end
+
     script = []
-    script << %(export PATH="#{asdf_path}/bin:$PATH")
+    script << %(export PATH="#{asdf_path}/shims:#{asdf_path}/bin:$PATH")
     script << %(source /etc/profile.d/asdf.sh)
-    script << new_resource.code
+    script << "asdf #{code}"
     script.join("\n").concat("\n")
   end
 
