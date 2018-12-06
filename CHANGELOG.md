@@ -1,5 +1,30 @@
 # asdf CHANGELOG
 
+## [v0.4.0](https://github.com/asdf-chef/asdf/tree/v0.4.0) (2018-12-06)
+
+* [[`bba80862aa`](https://github.com/asdf-chef/asdf/commit/bba80862aa)] - Remove stove gem (Fernando Aleman)
+* [[`ffa0c94d64`](https://github.com/asdf-chef/asdf/commit/ffa0c94d64)] - Update package resource (Fernando Aleman)
+* [[`18814e59fc`](https://github.com/asdf-chef/asdf/commit/18814e59fc)] - Update plugin resource (Fernando Aleman)
+* [[`65b794efd8`](https://github.com/asdf-chef/asdf/commit/65b794efd8)] - Update script resource (Fernando Aleman)
+* [[`e0dfcb94a9`](https://github.com/asdf-chef/asdf/commit/e0dfcb94a9)] - Add asdf_user to script helpers (Fernando Aleman)
+* [[`e165d2e3a9`](https://github.com/asdf-chef/asdf/commit/e165d2e3a9)] - Update user_install resource (Fernando Aleman)
+* [[`883f3b7913`](https://github.com/asdf-chef/asdf/commit/883f3b7913)] - Update platforms and add support for Amazon Linux 2 (Fernando Aleman)
+* [[`d5a2c2857d`](https://github.com/asdf-chef/asdf/commit/d5a2c2857d)] - Update libraries (Fernando Aleman)
+* [[`1fb7fc1bcf`](https://github.com/asdf-chef/asdf/commit/1fb7fc1bcf)] - Update README.md (Fernando Aleman)
+* [[`14a33cc663`](https://github.com/asdf-chef/asdf/commit/14a33cc663)] - Add post package dependencies (Fernando Aleman)
+* [[`c2c84ffaba`](https://github.com/asdf-chef/asdf/commit/c2c84ffaba)] - Remove chef-sugar (Fernando Aleman)
+* [[`1a8f5e413a`](https://github.com/asdf-chef/asdf/commit/1a8f5e413a)] - Require chef version \>= 14.3 (Fernando Aleman)
+* [[`49901822dc`](https://github.com/asdf-chef/asdf/commit/49901822dc)] - Cleanup frozen_string_literal (Fernando Aleman)
+* [[`9191b9745c`](https://github.com/asdf-chef/asdf/commit/9191b9745c)] - Update CHANGELOG.md formatting (Fernando Aleman)
+* [[`28234e102a`](https://github.com/asdf-chef/asdf/commit/28234e102a)] - Update .kitchen.yml and .kitchen.dokken.yml (Fernando Aleman)
+* [[`8861636450`](https://github.com/asdf-chef/asdf/commit/8861636450)] - Update .travis.yml (Fernando Aleman)
+* [[`d130ca678a`](https://github.com/asdf-chef/asdf/commit/d130ca678a)] - Update TESTING.md (Fernando Aleman)
+* [[`773b384176`](https://github.com/asdf-chef/asdf/commit/773b384176)] - Update chefignore (Fernando Aleman)
+* [[`c0bed5a512`](https://github.com/asdf-chef/asdf/commit/c0bed5a512)] - Formatting frozen_string_literal (Fernando Aleman)
+* [[`7c98e655cd`](https://github.com/asdf-chef/asdf/commit/7c98e655cd)] - Remove rubocop customizations (Fernando Aleman)
+* [[`98fcab6b89`](https://github.com/asdf-chef/asdf/commit/98fcab6b89)] - Remove matchers library (Fernando Aleman)
+* [[`8bf2c1e290`](https://github.com/asdf-chef/asdf/commit/8bf2c1e290)] - Update .gitignore (Fernando Aleman)
+
 ## [v0.3.0](https://github.com/asdf-chef/asdf/tree/v0.3.0) (2018-10-19)
 
 * [[`ac08f614f3`](https://github.com/asdf-chef/asdf/commit/ac08f614f3)] - Update metadata supports (Fernando Aleman)
