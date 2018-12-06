@@ -2,38 +2,39 @@
 # Cookbook:: asdf
 # Resource:: user_install
 #
-# Copyright:: 2017, Fernando Aleman
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
 
 provides :asdf_user_install
 
-property :user, String, name_property: true
-property :git_url, String, default: 'https://github.com/asdf-vm/asdf.git'
-property :git_ref, String
-property :group, String, default: lazy { user }
-property :home_dir, String, default: lazy { ::File.expand_path("~#{user}") }
-property :user_prefix, String, default: lazy { ::File.join(home_dir, '.asdf') }
-property :update_asdf, [true, false], default: true
-property :legacy_version_file, [true, false], default: false
+property :git_ref, String,
+         description: 'Git reference to checkout.'
+
+property :git_url, String,
+         default: 'https://github.com/asdf-vm/asdf.git',
+         description: 'Git url to checkout asdf from.'
+
+property :legacy_version_file, [true, false],
+         default: false,
+         description: 'Whether or not to use legacy version files.'
+
+property :update_asdf, [true, false],
+         default: true,
+         description: 'Whether or not to update asdf.'
+
+property :user, String,
+         description: 'Which user to install asdf to.',
+         name_property: true
 
 action :install do
   install_asdf_deps
 
   execute 'updatedb'
 
+  home_dir = ::File.expand_path("~#{new_resource.user}")
+  user_asdf_path = ::File.join(home_dir, '.asdf')
+
   node.run_state['asdf_path'] ||= {}
-  node.run_state['asdf_path'][new_resource.user] ||= new_resource.user_prefix
+  node.run_state['asdf_path'][new_resource.user] ||= user_asdf_path
 
   cookbook_file '/etc/profile.d/asdf.sh' do
     cookbook 'asdf'
@@ -43,56 +44,56 @@ action :install do
     action :create_if_missing
   end
 
-  git new_resource.user_prefix do
+  git user_asdf_path do
     repository new_resource.git_url
     reference new_resource.git_ref || latest_version
     action :checkout if new_resource.update_asdf == false
     user new_resource.user
-    group new_resource.group
+    group new_resource.user
     notifies :run, 'ruby_block[Add asdf to PATH]', :immediately
   end
 
-  directory "#{new_resource.user_prefix}/installs" do
+  directory "#{user_asdf_path}/installs" do
     owner new_resource.user
-    group new_resource.group
+    group new_resource.user
     mode 0755
   end
 
-  directory "#{new_resource.user_prefix}/plugins" do
+  directory "#{user_asdf_path}/plugins" do
     owner new_resource.user
-    group new_resource.group
+    group new_resource.user
     mode 0755
   end
 
-  directory "#{new_resource.user_prefix}/shims" do
+  directory "#{user_asdf_path}/shims" do
     owner new_resource.user
-    group new_resource.group
+    group new_resource.user
     mode 0755
   end
 
-  file "#{new_resource.home_dir}/.asdfrc" do
+  file "#{home_dir}/.asdfrc" do
     content "legacy_version_file = #{new_resource.legacy_version_file ? 'yes' : 'no'}"
     mode '0755'
     owner new_resource.user
-    group new_resource.group
+    group new_resource.user
     action :create_if_missing
   end
 
   ruby_block 'Add asdf to PATH' do
     block do
-      ENV['PATH'] = "#{new_resource.user_prefix}/bin:#{new_resource.user_prefix}/shims:#{ENV['PATH']}"
+      ENV['PATH'] = "#{user_asdf_path}/bin:#{user_asdf_path}/shims:#{ENV['PATH']}"
     end
     action :nothing
   end
 
   bash "Initialize user #{new_resource.user} asdf" do
-    code %(source #{new_resource.user_prefix}/asdf.sh)
+    code %(source #{user_asdf_path}/asdf.sh)
     action :nothing
-    subscribes :run, "git[#{new_resource.user_prefix}]", :immediately
+    subscribes :run, "git[#{user_asdf_path}]", :immediately
   end
 
   bash "Initialize user #{new_resource.user} asdf bash completion" do
-    code %(source #{new_resource.user_prefix}/completions/asdf.bash)
+    code %(source #{user_asdf_path}/completions/asdf.bash)
     action :nothing
     subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
   end

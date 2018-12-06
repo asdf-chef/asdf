@@ -144,8 +144,8 @@ Installs asdf to the user path, making asdf only available to that user.
 asdf_user_install 'name' do
   git_url                   String
   git_ref                   String
-  update_asdf               TrueClass, FalseClass
-  legacy_version_file       TrueClass, FalseClass
+  update_asdf               [TrueClass, FalseClass]
+  legacy_version_file       [TrueClass, FalseClass]
 end
 ```
 
@@ -159,10 +159,11 @@ This resource has the following actions:
 
 This resource has the following properties:
 
-- `git_url` The git url to checkout asdf from. Defaults to `https://github.com/asdf-vm/asdf.git`.
-- `git_ref` The git reference to checkout. Defaults to `nil`.
-- `update_asdf` Whether or not to keep the git repo up to date. Defaults to `true`.
-- `legacy_version_file` Whether or not to use legacy version files, i.e. .ruby-version. Defaults to `false`.
+- `git_ref` Git reference to checkout.
+- `git_url` Git url to checkout asdf from. Defaults to `https://github.com/asdf-vm/asdf.git`.
+- `legacy_version_file` Whether or not to use legacy version files. Defaults to `false`.
+- `update_asdf` Whether or not to update asdf. Defaults to `true`.
+- `user` Which user to install asdf to. Defaults to `name`.
 
 ## Package Dependencies
 
