@@ -30,6 +30,7 @@ action :install do
 
   execute 'updatedb'
 
+  node.run_state['asdf_user'] = new_resource.user
   home_dir = ::File.expand_path("~#{new_resource.user}")
   user_asdf_path = ::File.join(home_dir, '.asdf')
 

@@ -19,7 +19,7 @@
 provides :asdf_package
 
 property :package, String, name_property: true
-property :user, String, required: true
+property :user, String
 property :version, String, required: true
 property :live_stream, [true, false], default: false
 
@@ -29,7 +29,6 @@ action :install do
   install_package_deps
 
   asdf_script "install #{new_resource.package} #{new_resource.version}" do
-    user new_resource.user
     code "asdf install #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
     not_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
@@ -40,7 +39,6 @@ end
 
 action :global do
   asdf_script "global #{new_resource.package} #{new_resource.version}" do
-    user new_resource.user
     code "asdf global #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
     only_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
@@ -49,7 +47,6 @@ end
 
 action :uninstall do
   asdf_script "uninstall #{new_resource.package} #{new_resource.version}" do
-    user new_resource.user
     code "asdf uninstall #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
     only_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }

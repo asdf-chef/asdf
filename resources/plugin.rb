@@ -18,13 +18,12 @@
 
 provides :plugin
 
-property :user, String, required: true
+property :user, String
 property :git_url, String
 property :live_stream, [true, false], default: false
 
 action :add do
   asdf_script "plugin-add #{new_resource.name}" do
-    user new_resource.user
     code "asdf plugin-add #{new_resource.name} #{new_resource.git_url}".strip
     live_stream new_resource.live_stream
     not_if { plugin_installed? }
@@ -33,7 +32,6 @@ end
 
 action :update do
   asdf_script "plugin-update #{new_resource.name}" do
-    user new_resource.user
     code "asdf plugin-update #{new_resource.name}"
     live_stream new_resource.live_stream
     only_if { plugin_can_be_updated? }
@@ -42,7 +40,6 @@ end
 
 action :remove do
   asdf_script "plugin-remove #{new_resource.name}" do
-    user new_resource.user
     code "asdf plugin-remove #{new_resource.name}"
     live_stream new_resource.live_stream
     only_if { plugin_installed? }

@@ -18,10 +18,8 @@
 
 provides :asdf_script
 
-property :user, String, required: true
+property :user, String
 property :code, String, required: true
-property :group, String, default: lazy { user }
-property :cwd, String, default: lazy { ::File.expand_path("~#{user}") }
 property :creates, String
 property :path, Array
 property :environment, Hash
@@ -32,10 +30,10 @@ property :live_stream, [true, false], default: false
 
 action :run do
   bash new_resource.name do
-    user new_resource.user
     code script_code
-    group new_resource.group
-    cwd new_resource.cwd
+    user asdf_user
+    group asdf_user
+    cwd ::File.expand_path("~#{asdf_user}")
     creates new_resource.creates if new_resource.creates
     environment(script_environment)
     returns new_resource.returns
@@ -64,8 +62,8 @@ action_class do
       script_env['PATH'] = "#{new_resource.path.join(':')}:#{ENV['PATH']}"
     end
 
-    script_env['USER'] = new_resource.user
-    script_env['HOME'] = ::File.expand_path("~#{new_resource.user}")
+    script_env['USER'] = asdf_user
+    script_env['HOME'] = ::File.expand_path("~#{asdf_user}")
 
     script_env
   end

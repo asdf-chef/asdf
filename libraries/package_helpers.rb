@@ -55,12 +55,12 @@ module Asdf
     def install_post_package_deps
       case new_resource.package
       when 'ruby'
-        user_path = ::File.expand_path("~#{new_resource.user}")
+        user_path = ::File.expand_path("~#{asdf_user}")
 
         file "#{user_path}/.default-gems" do
           content 'bundler'
-          owner new_resource.user
-          group new_resource.user
+          owner asdf_user
+          group asdf_user
           not_if { ::File.exist?("#{user_path}/.default-gems") }
         end
       end
@@ -117,7 +117,7 @@ module Asdf
       deps = []
 
       asdf_script 'install nodejs package dependencies' do
-        user new_resource.user
+        user asdf_user
         code 'bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring'
         live_stream new_resource.live_stream
         only_if { ::Dir.exist?("#{asdf_path}/plugins/nodejs") }
