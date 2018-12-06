@@ -100,7 +100,7 @@ action :install do
   link '/usr/bin/shasum' do
     to '/usr/bin/sha1sum'
     not_if 'test -L /usr/bin/shasum'
-    only_if { node['platform_family'] == 'rhel' }
+    only_if { %w(amazon fedora rhel).include?(node['platform_family']) }
   end
 end
 

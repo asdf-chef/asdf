@@ -3,28 +3,39 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero
+  product_name: chefdk
 
 verifier:
   name: inspec
 
 platforms:
+# Amazon Linux 2 can't be fully tested yet on Test Kitchen because the inspec
+# tests error out due to a bug in the current train 1.5.6 gem. The issue has
+# been fixed in version 1.5.10, but that hasn't been released yet. Until then,
+# we can converge the test and see that everything runs without errors.
+# https://github.com/inspec/train/blob/v1.5.6/lib/train/platforms/detect/helpers/os_linux.rb#L13
+#
+- name: amazonlinux-2
+  driver_config:
+    box: gbailey/amzn2
 - name: centos-7
 - name: debian-8
 - name: debian-9
 - name: fedora-27
 - name: fedora-28
-- name: ubuntu-14.04
 - name: ubuntu-16.04
 - name: ubuntu-18.04
 
 suites:
 - name: test
   run_list:
-  - recipe[test::asdf_user_install]
   - recipe[test::asdf_script]
   - recipe[test::asdf_plugin]
   - recipe[test::asdf_package]
   verifier:
     inspec_tests:
     - test/smoke/default/asdf_test.rb
+
+- name: user_install
+  run_list:
+  - recipe[test::user_install]

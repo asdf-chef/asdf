@@ -14,6 +14,19 @@ verifier:
   name: inspec
 
 platforms:
+# Amazon Linux 2 can't be fully tested yet on Test Kitchen because the inspec
+# tests error out due to a bug in the current train 1.5.6 gem. The issue has
+# been fixed in version 1.5.10, but that hasn't been released yet. Until then,
+# we can converge the test and see that everything runs without errors.
+# https://github.com/inspec/train/blob/v1.5.6/lib/train/platforms/detect/helpers/os_linux.rb#L13
+#
+- name: amazonlinux-2
+  driver:
+    image: dokken/amazonlinux-2
+    pid_one_command: /usr/lib/systemd/systemd
+    intermediate_instructions:
+    - RUN /usr/bin/yum -y update
+
 - name: centos-7
   driver:
     image: dokken/centos-7
@@ -48,14 +61,6 @@ platforms:
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
     - RUN /usr/bin/yum -y update
-
-- name: ubuntu-14.04
-  driver:
-    image: dokken/ubuntu-14.04
-    pid_one_command: /sbin/init
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get -y update
-    - RUN /usr/bin/apt-get install -y sudo
 
 - name: ubuntu-16.04
   driver:

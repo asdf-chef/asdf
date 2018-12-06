@@ -12,7 +12,7 @@ module Asdf
       asdf_deps = %w(automake git grep libtool mlocate unzip)
 
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         asdf_deps.concat %w(bzip2 libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
       when 'debian'
         asdf_deps.concat %w(libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
@@ -68,7 +68,7 @@ module Asdf
 
     def r_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         %w(libcurl-devel libgfortran libXt-devel pcre2 pcre2-devel xz-devel)
       when 'debian'
         %w(gfortran libbz2-dev libcurl3-dev liblzma-dev libpcre3 libpcre3-dev libxt-dev)
@@ -77,7 +77,7 @@ module Asdf
 
     def clojure_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'java-1.8.0-openjdk'
       when 'debian'
         'default-jre'
@@ -86,27 +86,18 @@ module Asdf
 
     def erlang_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         %w(gcc gcc-c++ glibc-devel java-1.8.0-openjdk-devel ncurses-devel openssl-devel wget wxBase.x86_64)
       when 'debian'
         deps = %w(libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev xsltproc fop libxml2-utils default-jdk)
-
-        if node['platform'] == 'ubuntu'
-          deps << case node['platform_version']
-                  when '14.04'
-                    'libwxgtk2.8-dev'
-                  else
-                    'libwxgtk3.0-dev'
-                  end
-        end
-
+        deps << 'libwxgtk3.0-dev' if node['platform'] == 'ubuntu'
         deps
       end
     end
 
     def gradle_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'java-1.8.0-openjdk'
       when 'debian'
         'default-jre'
@@ -115,7 +106,7 @@ module Asdf
 
     def haskell_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'gmp-devel'
       when 'debian'
         'libgmp-dev'
@@ -143,7 +134,7 @@ module Asdf
 
     def openresty_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         %w(openssl openssl-devel pcre2 pcre2-devel)
       when 'debian'
         %w(openssl libssl-dev libpcre3 libpcre3-dev)
@@ -152,7 +143,7 @@ module Asdf
 
     def php_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         %w(libcurl libcurl-devel libcxx libcxx-devel libjpeg-turbo-devel libpng-devel openssl openssl-devel re2c readline-devel libedit-devel zlib-devel libicu-devel libxml2-devel postgresql-libs)
       when 'debian'
         # Fix for PHP bug
@@ -178,7 +169,6 @@ module Asdf
         deps = %w(curl libjpeg-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libreadline-dev libedit-dev zlib1g-dev libicu-dev libxml2-dev libmysqlclient-dev libpq-dev)
 
         if node['platform'] == 'ubuntu'
-          deps << 'libpng12-dev' if node['platform_version'] == '14.04'
           deps << 'libpng16-dev' if node['platform_version'] == '16.04'
           deps.concat %w(libcurl4 libpng-dev re2c) if node['platform_version'] == '18.04'
         end
@@ -189,7 +179,7 @@ module Asdf
 
     def postgres_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'readline-devel'
       when 'debian'
         'libreadline-dev'
@@ -198,7 +188,7 @@ module Asdf
 
     def python_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         %w(openssl-dev zlib-devel readline-devel sqlite-devel wget curl llvm)
       when 'debian'
         %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
@@ -218,7 +208,7 @@ module Asdf
 
     def sbt_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'java-1.8.0-openjdk'
       when 'debian'
         'default-jre'
@@ -227,7 +217,7 @@ module Asdf
 
     def scala_deps
       case node['platform_family']
-      when 'rhel', 'fedora'
+      when 'amazon', 'fedora', 'rhel'
         'java-1.8.0-openjdk'
       when 'debian'
         'default-jre'

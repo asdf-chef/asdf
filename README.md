@@ -12,14 +12,11 @@ Installs and configures [asdf](https://github.com/asdf-vm/asdf) extendable versi
 
 The following platforms are supported and tested with Test Kitchen:
 
-- CentOS 7
-- Debian 8
-- Debian 9
-- Fedora 27
-- Fedora 28
-- Ubuntu 14.04
-- Ubuntu 16.04
-- Ubuntu 18.04
+- Amazon Linux 2+
+- CentOS 7+
+- Debian 8+
+- Fedora 27+
+- Ubuntu 16.04+
 
 Other Debian and RHEL family distributions are assumed to work.
 

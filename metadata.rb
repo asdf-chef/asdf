@@ -10,7 +10,7 @@ chef_version '>= 14.3'
 issues_url 'https://github.com/asdf-chef/asdf/issues'
 source_url 'https://github.com/asdf-chef/asdf'
 
-%w(centos debian fedora oracle redhat scientific ubuntu).each do |os|
+%w(amazon centos debian fedora oracle redhat scientific ubuntu).each do |os|
   supports os
 end
 
