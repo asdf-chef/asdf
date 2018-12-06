@@ -82,9 +82,9 @@ Installs, updates or removes an asdf plugin.
 
 ```ruby
 asdf_plugin 'name' do
-  user                      String
   git_url                   String
-  live_stream               TrueClass, FalseClass
+  live_stream               [TrueClass, FalseClass]
+  user                      String
 end
 ```
 
@@ -100,9 +100,9 @@ This resource has the following actions:
 
 This resource has the following properties:
 
-- `user` The user to run asdf as.
-- `git_url` The git url to checkout plugin from. Defaults to the `asdf plugin repo`.
+- `git_url` Git url to checkout plugin from.
 - `live_stream` Whether or not to output verbose stream. Defaults to `false`.
+- `user` Which user to run asdf code as.
 
 ### asdf_script
 

@@ -1,3 +1,5 @@
+include_recipe 'test::user_install'
+
 asdf_plugin 'clojure'
 
 asdf_plugin 'clojure' do

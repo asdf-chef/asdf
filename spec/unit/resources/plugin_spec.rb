@@ -1,13 +1,20 @@
+#
+# Cookbook:: asdf
+# Spec:: plugin
+#
+# Copyright:: 2018, Fernando Aleman, All Rights Reserved.
+
 require 'spec_helper'
 
-describe 'test::asdf_plugin' do
+describe 'test::plugin' do
   SUPPORTED_PLATFORMS.each do |platform, versions|
     versions.each do |version|
-      let(:chef_run) do
-        ChefSpec::ServerRunner.new(platform: platform, version: version).converge(described_recipe)
-      end
+      context "Using #{platform} #{version}" do
+        let(:chef_run) do
+          runner = ChefSpec::ServerRunner.new(platform: platform, version: version)
+          runner.converge(described_recipe)
+        end
 
-      context "using #{platform} #{version}" do
         it 'adds clojure plugin' do
           expect(chef_run).to add_asdf_plugin('clojure')
         end

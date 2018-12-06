@@ -30,11 +30,14 @@ suites:
 - name: test
   run_list:
   - recipe[test::user_install]
-  - recipe[test::asdf_plugin]
   - recipe[test::asdf_package]
   verifier:
     inspec_tests:
     - test/smoke/default/asdf_test.rb
+
+- name: plugin
+  run_list:
+  - recipe[test::plugin]
 
 - name: script
   run_list:
