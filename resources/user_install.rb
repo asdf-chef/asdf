@@ -105,7 +105,7 @@ action :install do
 end
 
 action_class do
-  include Chef::Asdf::PackageHelpers
+  include Asdf::PackageHelpers
 
   def latest_version
     require 'net/http'

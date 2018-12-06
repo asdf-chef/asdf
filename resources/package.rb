@@ -57,6 +57,6 @@ action :uninstall do
 end
 
 action_class do
-  include Chef::Asdf::ScriptHelpers
-  include Chef::Asdf::PackageHelpers
+  include Asdf::ScriptHelpers
+  include Asdf::PackageHelpers
 end

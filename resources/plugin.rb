@@ -50,7 +50,7 @@ action :remove do
 end
 
 action_class do
-  include Chef::Asdf::ScriptHelpers
+  include Asdf::ScriptHelpers
 
   def plugin_installed?
     ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}")

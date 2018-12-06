@@ -46,7 +46,7 @@ action :run do
 end
 
 action_class do
-  include Chef::Asdf::ScriptHelpers
+  include Asdf::ScriptHelpers
 
   def script_code
     script = []
