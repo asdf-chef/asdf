@@ -2,36 +2,31 @@
 # Cookbook:: asdf
 # Resource:: package
 #
-# Copyright:: 2017, Fernando Aleman
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
 
 provides :asdf_package
 
-property :package, String, name_property: true
-property :user, String
-property :version, String, required: true
-property :live_stream, [true, false], default: false
+property :live_stream, [true, false],
+         default: false,
+         description: 'Whether or not to output verbose stream.'
 
-default_action :install
+property :package, String,
+         description: 'Which package to install.',
+         name_property: true
+
+property :user, String,
+         description: 'Which user to run asdf code as.'
+
+property :version, String,
+         description: 'Which package version to install.',
+         required: true
 
 action :install do
   install_package_deps
 
   asdf_script "install #{new_resource.package} #{new_resource.version}" do
-    code "asdf install #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
-    not_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
+    not_if { package_version_exists? }
   end
 
   install_post_package_deps
@@ -39,21 +34,23 @@ end
 
 action :global do
   asdf_script "global #{new_resource.package} #{new_resource.version}" do
-    code "asdf global #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
-    only_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
+    only_if { package_version_exists? }
   end
 end
 
 action :uninstall do
   asdf_script "uninstall #{new_resource.package} #{new_resource.version}" do
-    code "asdf uninstall #{new_resource.package} #{new_resource.version}"
     live_stream new_resource.live_stream
-    only_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
+    only_if { package_version_exists? }
   end
 end
 
 action_class do
   include Asdf::ScriptHelpers
   include Asdf::PackageHelpers
+
+  def package_version_exists?
+    ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}")
+  end
 end

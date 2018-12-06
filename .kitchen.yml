@@ -27,13 +27,9 @@ platforms:
 - name: ubuntu-18.04
 
 suites:
-- name: test
+- name: package
   run_list:
-  - recipe[test::user_install]
-  - recipe[test::asdf_package]
-  verifier:
-    inspec_tests:
-    - test/smoke/default/asdf_test.rb
+  - recipe[test::package]
 
 - name: plugin
   run_list:

@@ -54,9 +54,10 @@ Installs, uninstalls and sets global an asdf package.
 
 ```ruby
 asdf_package 'name' do
+  live_stream               [TrueClass, FalseClass]
+  package                   String
   user                      String
   version                   String
-  live_stream               TrueClass, FalseClass
 end
 ```
 
@@ -72,9 +73,10 @@ This resource has the following actions:
 
 This resource has the following properties:
 
-- `user` The user to run asdf as. *Required*.
-- `version` The package version. *Required*.
 - `live_stream` Whether or not to output verbose stream. Defaults to `false`.
+- `package` Which package to install. Defaults to `name`.
+- `user` Which user to run asdf code as.
+- `version` Which package version to install. *Required*.
 
 ### asdf_plugin
 
