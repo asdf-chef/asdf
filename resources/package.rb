@@ -26,9 +26,7 @@ property :live_stream, [true, false], default: false
 default_action :install
 
 action :install do
-  unless ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}")
-    install_package_deps(new_resource.package)
-  end
+  install_package_deps
 
   asdf_script "install #{new_resource.package} #{new_resource.version}" do
     user new_resource.user
@@ -36,6 +34,8 @@ action :install do
     live_stream new_resource.live_stream
     not_if { ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}") }
   end
+
+  install_post_package_deps
 end
 
 action :global do

@@ -34,10 +34,10 @@ class Chef
         package asdf_deps
       end
 
-      def install_package_deps(p)
+      def install_package_deps
         package_deps = []
 
-        case p
+        case new_resource.package
         when 'R'
           package_deps.concat Array(r_deps)
         when 'clojure', 'gradle', 'sbt', 'scala'
@@ -63,6 +63,20 @@ class Chef
         end
 
         package package_deps unless package_deps.empty?
+      end
+
+      def install_post_package_deps
+        case new_resource.package
+        when 'ruby'
+          user_path = ::File.expand_path("~#{new_resource.user}")
+
+          file "#{user_path}/.default-gems" do
+            content 'bundler'
+            owner new_resource.user
+            group new_resource.user
+            not_if { ::File.exist?("#{user_path}/.default-gems") }
+          end
+        end
       end
 
       def r_deps

@@ -80,4 +80,13 @@ control 'asdf_package' do
   describe file('/home/vagrant/.tool-versions') do
     its('content') { should include('ruby 2.5.1') }
   end
+
+  desc 'Sets default gems'
+  describe file('/home/vagrant/.default-gems') do
+    it { should exist }
+    it { should be_file }
+    its('owner') { should eq 'vagrant' }
+    its('group') { should eq 'vagrant' }
+    its('content') { should include 'bundler' }
+  end
 end
