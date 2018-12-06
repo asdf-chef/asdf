@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 name 'asdf'
 maintainer 'Fernando Aleman'
 maintainer_email 'fernandoaleman@mac.com'

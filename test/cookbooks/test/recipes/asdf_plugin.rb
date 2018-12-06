@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 asdf_plugin 'clojure' do
   user 'vagrant'
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 control 'asdf_user_install' do
   title 'Installs asdf'
 
