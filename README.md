@@ -8,7 +8,7 @@ Manages [asdf](https://github.com/asdf-vm/asdf) extendable version manager.
 
 ### Chef
 
-This cookbook requires Chef 12.9+.
+This cookbook requires Chef 14.3+.
 
 ### Platforms
 
@@ -27,7 +27,8 @@ Other Debian and RHEL family distributions are assumed to work.
 
 ## Dependencies
 
-- build-essential
+- ark
+- chef-sugar
 
 ## Usage
 

@@ -20,7 +20,8 @@ class Chef
   module Asdf
     module PackageHelpers
       def install_asdf_deps
-        include_recipe 'build-essential'
+        build_essential 'asdf'
+
         package %w(automake git grep libtool mlocate unzip)
 
         if redhat? || fedora?
