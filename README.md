@@ -28,7 +28,6 @@ Other Debian and RHEL family distributions are assumed to work.
 ## Dependencies
 
 - ark
-- chef-sugar
 
 ## Usage
 

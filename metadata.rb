@@ -15,4 +15,3 @@ source_url 'https://github.com/asdf-chef/asdf'
 end
 
 depends 'ark'
-depends 'chef-sugar'

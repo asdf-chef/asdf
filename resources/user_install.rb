@@ -30,6 +30,8 @@ property :legacy_version_file, [true, false], default: false
 action :install do
   install_asdf_deps
 
+  execute 'updatedb'
+
   node.run_state['asdf_path'] ||= {}
   node.run_state['asdf_path'][new_resource.user] ||= new_resource.user_prefix
 
@@ -98,7 +100,8 @@ action :install do
   link '/usr/bin/shasum' do
     to '/usr/bin/sha1sum'
     not_if 'test -L /usr/bin/shasum'
-  end if platform_family?('rhel')
+    only_if { node['platform_family'] == 'rhel' }
+  end
 end
 
 action_class do
