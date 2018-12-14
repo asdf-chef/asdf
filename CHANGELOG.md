@@ -1,5 +1,11 @@
 # asdf CHANGELOG
 
+## [v0.4.1](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2018-12-13)
+
+* [[`cc29abddc5`](https://github.com/asdf-chef/asdf/commit/cc29abddc5)] - Remove post package dependencies (Fernando Aleman)
+* [[`ea5cdabdcd`](https://github.com/asdf-chef/asdf/commit/ea5cdabdcd)] - Fix more fedora instances (Fernando Aleman)
+* [[`6d017f44db`](https://github.com/asdf-chef/asdf/commit/6d017f44db)] - Fix fedora instance (Fernando Aleman)
+
 ## [v0.4.0](https://github.com/asdf-chef/asdf/tree/v0.4.0) (2018-12-06)
 
 * [[`bba80862aa`](https://github.com/asdf-chef/asdf/commit/bba80862aa)] - Remove stove gem (Fernando Aleman)
