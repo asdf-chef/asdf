@@ -28,8 +28,6 @@ action :install do
     live_stream new_resource.live_stream
     not_if { package_version_exists? }
   end
-
-  install_post_package_deps
 end
 
 action :global do

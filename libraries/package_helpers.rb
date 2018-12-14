@@ -47,14 +47,7 @@ module Asdf
         package_deps.concat Array(python_deps)
       when 'ruby'
         package_deps.concat Array(ruby_deps)
-      end
 
-      package package_deps unless package_deps.empty?
-    end
-
-    def install_post_package_deps
-      case new_resource.package
-      when 'ruby'
         user_path = ::File.expand_path("~#{asdf_user}")
 
         file "#{user_path}/.default-gems" do
@@ -64,6 +57,8 @@ module Asdf
           not_if { ::File.exist?("#{user_path}/.default-gems") }
         end
       end
+
+      package package_deps unless package_deps.empty?
     end
 
     def r_deps

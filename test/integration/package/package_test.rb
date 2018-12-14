@@ -18,3 +18,8 @@ describe file('/home/vagrant/.default-gems') do
   its('group') { should eq 'vagrant' }
   its('content') { should include 'bundler' }
 end
+
+describe bash('sudo -H -u vagrant bash -c "source /etc/profile.d/asdf.sh && gem list bundler"') do
+  its('stdout') { should include('bundler') }
+  its('exit_status') { should eq 0 }
+end
