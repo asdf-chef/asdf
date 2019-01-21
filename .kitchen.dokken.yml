@@ -14,12 +14,6 @@ verifier:
   name: inspec
 
 platforms:
-# Amazon Linux 2 can't be fully tested yet on Test Kitchen because the inspec
-# tests error out due to a bug in the current train 1.5.6 gem. The issue has
-# been fixed in version 1.5.10, but that hasn't been released yet. Until then,
-# we can converge the test and see that everything runs without errors.
-# https://github.com/inspec/train/blob/v1.5.6/lib/train/platforms/detect/helpers/os_linux.rb#L13
-#
 - name: amazonlinux-2
   driver:
     image: dokken/amazonlinux-2
