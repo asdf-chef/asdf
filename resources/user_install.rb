@@ -7,6 +7,7 @@
 provides :asdf_user_install
 
 property :git_ref, String,
+         default: 'v0.6.3',
          description: 'Git reference to checkout.'
 
 property :git_url, String,
@@ -47,7 +48,7 @@ action :install do
 
   git user_asdf_path do
     repository new_resource.git_url
-    reference new_resource.git_ref || latest_version
+    reference new_resource.git_ref
     action :checkout if new_resource.update_asdf == false
     user new_resource.user
     group new_resource.user
@@ -108,14 +109,4 @@ end
 
 action_class do
   include Asdf::PackageHelpers
-
-  def latest_version
-    require 'net/http'
-    require 'uri'
-
-    uri = URI.parse('https://raw.githubusercontent.com/asdf-vm/asdf/master/VERSION')
-    response = Net::HTTP.get_response(uri)
-
-    response.body.strip
-  end
 end
