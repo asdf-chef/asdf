@@ -1,5 +1,10 @@
 # asdf CHANGELOG
 
+## [v0.4.2](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-01-21)
+
+* [[`8d48ca9d58`](https://github.com/asdf-chef/asdf/commit/8d48ca9d58)] - Amazon Linux 2 can now be tested (Fernando Aleman)
+* [[`06a2d1415c`](https://github.com/asdf-chef/asdf/commit/06a2d1415c)] - Fixed git_ref where it was not getting latest version (Fernando Aleman)
+
 ## [v0.4.1](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2018-12-13)
 
 * [[`cc29abddc5`](https://github.com/asdf-chef/asdf/commit/cc29abddc5)] - Remove post package dependencies (Fernando Aleman)
