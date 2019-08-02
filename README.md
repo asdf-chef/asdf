@@ -42,10 +42,37 @@ For more details look at the [TESTING.md](./TESTING.md).
 
 ## Resources
 
+- [asdf_exec](#asdf_exec)
 - [asdf_package](#asdf_package)
 - [asdf_plugin](#asdf_plugin)
 - [asdf_script](#asdf_script)
 - [asdf_user_install](#asdf_user_install)
+
+### asdf_exec
+
+Run asdf exec commands.
+
+```ruby
+asdf_exec 'name' do
+  command                   String
+  live_stream               [TrueClass, FalseClass]
+  user                      String
+end
+```
+
+#### _Actions_
+
+This resource has the following actions:
+
+- `:run` Default
+
+#### _Properties_
+
+This resource has the following properties:
+
+- `command` Command to run through asdf exec.
+- `live_stream` Whether or not to output verbose stream. Defaults to `false`.
+- `user` Which user to run asdf code as.
 
 ### asdf_package
 

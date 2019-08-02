@@ -21,6 +21,10 @@ platforms:
 - name: ubuntu-18.04
 
 suites:
+- name: exec
+  run_list:
+  - recipe[test::exec]
+
 - name: package
   run_list:
   - recipe[test::package]

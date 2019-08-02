@@ -73,6 +73,10 @@ platforms:
     - RUN /usr/bin/apt-get install -y sudo
 
 suites:
+- name: exec
+  run_list:
+  - recipe[test::exec]
+
 - name: package
   run_list:
   - recipe[test::package]
