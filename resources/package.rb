@@ -7,7 +7,7 @@
 provides :asdf_package
 
 property :live_stream, [true, false],
-         default: false,
+         default: true,
          description: 'Whether or not to output verbose stream.'
 
 property :package, String,

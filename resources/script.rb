@@ -14,7 +14,7 @@ property :environment, Hash,
          description: 'Environment variables to run script.'
 
 property :live_stream, [true, false],
-         default: false,
+         default: true,
          description: 'Whether or not to output verbose stream.'
 
 property :path, Array,

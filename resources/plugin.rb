@@ -10,7 +10,7 @@ property :git_url, String,
          description: 'Git url to checkout plugin from.'
 
 property :live_stream, [true, false],
-         default: false,
+         default: true,
          description: 'Whether or not to output verbose stream.'
 
 property :user, String,
