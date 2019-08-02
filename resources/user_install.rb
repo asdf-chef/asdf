@@ -42,7 +42,7 @@ action :install do
     cookbook 'asdf'
     source 'asdf.sh'
     owner 'root'
-    mode 0755
+    mode '0755'
     action :create_if_missing
   end
 
@@ -58,19 +58,19 @@ action :install do
   directory "#{user_asdf_path}/installs" do
     owner new_resource.user
     group new_resource.user
-    mode 0755
+    mode '0755'
   end
 
   directory "#{user_asdf_path}/plugins" do
     owner new_resource.user
     group new_resource.user
-    mode 0755
+    mode '0755'
   end
 
   directory "#{user_asdf_path}/shims" do
     owner new_resource.user
     group new_resource.user
-    mode 0755
+    mode '0755'
   end
 
   file "#{home_dir}/.asdfrc" do
