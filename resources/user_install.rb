@@ -7,7 +7,6 @@
 provides :asdf_user_install
 
 property :git_ref, String,
-         default: 'v0.6.3',
          description: 'Git reference to checkout.'
 
 property :git_url, String,
@@ -48,7 +47,7 @@ action :install do
 
   git user_asdf_path do
     repository new_resource.git_url
-    reference new_resource.git_ref
+    revision new_resource.git_ref if new_resource.git_ref
     action :checkout if new_resource.update_asdf == false
     user new_resource.user
     group new_resource.user
