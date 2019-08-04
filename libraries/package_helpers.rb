@@ -47,15 +47,6 @@ module Asdf
         package_deps.concat Array(python_deps)
       when 'ruby'
         package_deps.concat Array(ruby_deps)
-
-        user_path = ::File.expand_path("~#{asdf_user}")
-
-        file "#{user_path}/.default-gems" do
-          content 'bundler'
-          owner asdf_user
-          group asdf_user
-          not_if { ::File.exist?("#{user_path}/.default-gems") }
-        end
       end
 
       package package_deps unless package_deps.empty?
