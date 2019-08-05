@@ -1,27 +1,19 @@
-#
-# Cookbook:: asdf
-# Spec:: package
-#
-# Copyright:: 2018, Fernando Aleman, All Rights Reserved.
-
 require 'spec_helper'
 
-describe 'test::package' do
-  SUPPORTED_PLATFORMS.each do |platform, versions|
-    versions.each do |version|
-      context "Using #{platform} #{version}" do
-        let(:chef_run) do
-          runner = ChefSpec::ServerRunner.new(platform: platform, version: version)
-          runner.converge(described_recipe)
-        end
+describe 'asdf_package' do
+  step_into :asdf_package
+  platform 'ubuntu'
 
-        it 'installs ruby package' do
-          expect(chef_run).to install_asdf_package('ruby').with(
-            version: '2.5.1',
-            action: [:install, :global]
-          )
-        end
+  context 'with default properties' do
+    recipe do
+      asdf_package 'ruby' do
+        version '2.6.3'
       end
+    end
+
+    it do
+      is_expected.to run_asdf_script('install ruby 2.6.3')
+        .with_live_stream(true)
     end
   end
 end

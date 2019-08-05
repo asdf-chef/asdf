@@ -1,25 +1,17 @@
-#
-# Cookbook:: asdf
-# Resource:: package
-#
-# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
-
-provides :asdf_package
-
-property :live_stream, [true, false],
-         default: true,
-         description: 'Whether or not to output verbose stream.'
-
 property :package, String,
          description: 'Which package to install.',
          name_property: true
 
-property :user, String,
-         description: 'Which user to run asdf code as.'
-
 property :version, String,
          description: 'Which package version to install.',
          required: true
+
+property :live_stream, [true, false],
+         description: 'Whether or not to output verbose stream.',
+         default: true
+
+property :user, String,
+         description: 'Which user to run asdf code as.'
 
 action :install do
   install_package_deps
