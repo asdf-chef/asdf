@@ -1,0 +1,7 @@
+---
+name: default
+title: Integration tests for asdf
+summary: This InSpec profile contains integration tests for asdf cookbook
+version: 0.1.0
+supports:
+  - os-family: linux

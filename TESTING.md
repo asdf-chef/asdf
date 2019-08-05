@@ -59,5 +59,5 @@ Integration tests can be performed on a local workstation using
 Integration tests using Docker can be performed with:
 
 ```
-KITCHEN_LOCAL_YAML=.kitchen.dokken.yml chef exec kitchen test
+KITCHEN_LOCAL_YAML=kitchen.dokken.yml chef exec kitchen test
 ```
