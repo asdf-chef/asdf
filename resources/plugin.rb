@@ -1,17 +1,9 @@
-#
-# Cookbook:: asdf
-# Resource:: plugin
-#
-# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
-
-provides :asdf_plugin
-
 property :git_url, String,
          description: 'Git url to checkout plugin from.'
 
 property :live_stream, [true, false],
-         default: true,
-         description: 'Whether or not to output verbose stream.'
+         description: 'Whether or not to output verbose stream.',
+         default: true
 
 property :user, String,
          description: 'Which user to run asdf code as.'

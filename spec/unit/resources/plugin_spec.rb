@@ -1,40 +1,22 @@
-#
-# Cookbook:: asdf
-# Spec:: plugin
-#
-# Copyright:: 2018, Fernando Aleman, All Rights Reserved.
-
 require 'spec_helper'
 
-describe 'test::plugin' do
-  SUPPORTED_PLATFORMS.each do |platform, versions|
-    versions.each do |version|
-      context "Using #{platform} #{version}" do
-        let(:chef_run) do
-          runner = ChefSpec::ServerRunner.new(platform: platform, version: version)
-          runner.converge(described_recipe)
-        end
+describe 'asdf_plugin' do
+  step_into :asdf_plugin
+  platform 'ubuntu'
 
-        it 'adds clojure plugin' do
-          expect(chef_run).to add_asdf_plugin('clojure')
-        end
+  context 'with default properties' do
+    recipe do
+      asdf_plugin 'ruby'
+    end
 
-        it 'removes clojure plugin' do
-          expect(chef_run).to remove_asdf_plugin('clojure')
-        end
+    before do
+      allow(Dir).to receive(:exist?).and_call_original
+      allow(Dir).to receive(:exist?).with('/home/vagrant/.asdf/plugins/ruby').and_return(false)
+    end
 
-        it 'adds nodejs plugin' do
-          expect(chef_run).to add_asdf_plugin('nodejs')
-        end
-
-        it 'updates nodejs plugin' do
-          expect(chef_run).to add_asdf_plugin('nodejs')
-        end
-
-        it 'adds ruby plugin' do
-          expect(chef_run).to add_asdf_plugin('ruby')
-        end
-      end
+    it do
+      is_expected.to run_asdf_script('plugin-add ruby')
+        .with_live_stream(true)
     end
   end
 end

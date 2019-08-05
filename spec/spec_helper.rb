@@ -9,3 +9,7 @@ end
 def asdf_user
   'vagrant'
 end
+
+def asdf_path
+  '/home/vagrant/.asdf'
+end
