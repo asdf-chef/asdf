@@ -1,29 +1,21 @@
-#
-# Cookbook:: asdf
-# Resource:: user_install
-#
-# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
+property :user, String,
+         description: 'Which user to install asdf to.',
+         name_property: true
 
-provides :asdf_user_install
+property :git_url, String,
+         description: 'Git url to checkout asdf from.',
+         default: 'https://github.com/asdf-vm/asdf.git'
 
 property :git_ref, String,
          description: 'Git reference to checkout.'
 
-property :git_url, String,
-         default: 'https://github.com/asdf-vm/asdf.git',
-         description: 'Git url to checkout asdf from.'
+property :update_asdf, [true, false],
+         description: 'Whether or not to update asdf.',
+         default: true
 
 property :legacy_version_file, [true, false],
-         default: false,
-         description: 'Whether or not to use legacy version files.'
-
-property :update_asdf, [true, false],
-         default: true,
-         description: 'Whether or not to update asdf.'
-
-property :user, String,
-         description: 'Which user to install asdf to.',
-         name_property: true
+         description: 'Whether or not to use legacy version files.',
+         default: false
 
 action :install do
   install_asdf_deps
@@ -54,22 +46,12 @@ action :install do
     notifies :run, 'ruby_block[Add asdf to PATH]', :immediately
   end
 
-  directory "#{user_asdf_path}/installs" do
-    owner new_resource.user
-    group new_resource.user
-    mode '0755'
-  end
-
-  directory "#{user_asdf_path}/plugins" do
-    owner new_resource.user
-    group new_resource.user
-    mode '0755'
-  end
-
-  directory "#{user_asdf_path}/shims" do
-    owner new_resource.user
-    group new_resource.user
-    mode '0755'
+  %w(installs plugins shims).each do |dir|
+    directory "#{user_asdf_path}/#{dir}" do
+      owner new_resource.user
+      group new_resource.user
+      mode '0755'
+    end
   end
 
   file "#{home_dir}/.asdfrc" do
