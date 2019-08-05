@@ -5,7 +5,6 @@ Installs asdf to the user path, making asdf only available to that user.
 ```ruby
 asdf_user_install 'name' do
   user                String
-  group               String
   git_url             String
   git_ref             String
   update_asdf         [true, false]
@@ -30,15 +29,6 @@ Which user to install asdf to.
 | Type          | String |
 | Default       | `name` |
 | Name Property | `true` |
-
-### `group`
-
-Which user group to install asdf to.
-
-| property | value  |
-| -------- | ------ |
-| Type     | String |
-| Default  | `user` |
 
 ### `git_url`
 

@@ -1,11 +1,3 @@
-#
-# Cookbook:: asdf
-# Resource:: script
-#
-# Copyright:: 2017-2018, Fernando Aleman, All Rights Reserved.
-
-provides :asdf_script
-
 property :code, String,
          description: 'asdf command to run.',
          name_property: true
@@ -14,19 +6,20 @@ property :environment, Hash,
          description: 'Environment variables to run script.'
 
 property :live_stream, [true, false],
-         default: true,
-         description: 'Whether or not to output verbose stream.'
+         description: 'Whether or not to output verbose stream.',
+         default: true
 
 property :path, Array,
-         description: 'Additional path to include in environment path.'
+         description: 'Additional path to include in environment path.',
+         default: []
 
 property :returns, Array,
-         default: [0],
-         description: 'Expected return code.'
+         description: 'Expected return code.',
+         default: [0]
 
 property :timeout, [Integer, Float],
-         default: 3600,
-         description: 'Amount of time (in seconds) a command is to wait before timing out.'
+         description: 'Amount of time (in seconds) a command is to wait before timing out.',
+         default: 3600
 
 property :user, String,
          description: 'Which user to run asdf code as.'
