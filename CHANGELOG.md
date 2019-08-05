@@ -1,5 +1,30 @@
 # asdf CHANGELOG
 
+## [v0.5.0](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-08-05)
+
+* [[`e080c4002b`](https://github.com/asdf-chef/asdf/commit/e080c4002b)] - Add circleci and remove travis-ci (Fernando Alemán)
+* [[`fe59fafbd6`](https://github.com/asdf-chef/asdf/commit/fe59fafbd6)] - Update exec resource (Fernando Alemán)
+* [[`24507ec9d1`](https://github.com/asdf-chef/asdf/commit/24507ec9d1)] - Update package resource (Fernando Alemán)
+* [[`af000f81b3`](https://github.com/asdf-chef/asdf/commit/af000f81b3)] - Update plugin resource (Fernando Alemán)
+* [[`c1a98e11c3`](https://github.com/asdf-chef/asdf/commit/c1a98e11c3)] - Update script resource (Fernando Alemán)
+* [[`507aaf8ffc`](https://github.com/asdf-chef/asdf/commit/507aaf8ffc)] - Update user\_install resource (Fernando Alemán)
+* [[`f6df297048`](https://github.com/asdf-chef/asdf/commit/f6df297048)] - Update CONTRIBUTING.md (Fernando Alemán)
+* [[`2d74efd483`](https://github.com/asdf-chef/asdf/commit/2d74efd483)] - Update rspec helper (Fernando Alemán)
+* [[`a453d6f3b1`](https://github.com/asdf-chef/asdf/commit/a453d6f3b1)] - Move test/cookbooks into text/fixtures/cookbooks (Fernando Alemán)
+* [[`0e7f9324b4`](https://github.com/asdf-chef/asdf/commit/0e7f9324b4)] - Update delivery project.toml (Fernando Alemán)
+* [[`f3d5dcc383`](https://github.com/asdf-chef/asdf/commit/f3d5dcc383)] - Update chefignore (Fernando Alemán)
+* [[`b098b369ca`](https://github.com/asdf-chef/asdf/commit/b098b369ca)] - Remove .foodcritic (Fernando Alemán)
+* [[`c8b5a3bf77`](https://github.com/asdf-chef/asdf/commit/c8b5a3bf77)] - Add markdown lint (Fernando Alemán)
+* [[`9d230403eb`](https://github.com/asdf-chef/asdf/commit/9d230403eb)] - Add yaml lint (Fernando Alemán)
+* [[`13b6e613b8`](https://github.com/asdf-chef/asdf/commit/13b6e613b8)] - Delete unnecessary Gemfile (Fernando Alemán)
+* [[`8a660cbc4f`](https://github.com/asdf-chef/asdf/commit/8a660cbc4f)] - Remove ruby .default-gems file (Fernando Alemán)
+* [[`8d5ffb1150`](https://github.com/asdf-chef/asdf/commit/8d5ffb1150)] - Accept chef license for version 15 (Fernando Alemán)
+* [[`84237dc1ca`](https://github.com/asdf-chef/asdf/commit/84237dc1ca)] - Create asdf\_exec resource (Fernando Alemán)
+* [[`5759d6d39f`](https://github.com/asdf-chef/asdf/commit/5759d6d39f)] - Remove default user install git revision so it will install the latest version (Fernando Alemán)
+* [[`73e9354a63`](https://github.com/asdf-chef/asdf/commit/73e9354a63)] - Fix file modes in user\_install resource (Fernando Alemán)
+* [[`65afae019b`](https://github.com/asdf-chef/asdf/commit/65afae019b)] - Enable live\_stream by default (Fernando Alemán)
+* [[`0790753795`](https://github.com/asdf-chef/asdf/commit/0790753795)] - Add Amazon Linux 2 to Travis CI (Fernando Aleman)
+
 ## [v0.4.2](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-01-21)
 
 * [[`8d48ca9d58`](https://github.com/asdf-chef/asdf/commit/8d48ca9d58)] - Amazon Linux 2 can now be tested (Fernando Aleman)
