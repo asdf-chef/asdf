@@ -1,5 +1,9 @@
 # asdf CHANGELOG
 
+## [v0.5.1](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-08-05)
+
+* [[`cdc8fdbf56`](https://github.com/asdf-chef/asdf/commit/cdc8fdbf56)] - Fix yaml spacing (Fernando Alemán)
+
 ## [v0.5.0](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-08-05)
 
 * [[`e080c4002b`](https://github.com/asdf-chef/asdf/commit/e080c4002b)] - Add circleci and remove travis-ci (Fernando Alemán)
