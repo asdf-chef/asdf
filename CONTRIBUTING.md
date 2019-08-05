@@ -22,20 +22,24 @@
 
 ### Development Flow
 
-1. Clone the git repository from GitHub:
+- Clone the git repository from GitHub:
 
-        git clone git@github.com:asdf-chef/asdf.git
+```
+git clone git@github.com:asdf-chef/asdf.git
+```
 
-2. Create a branch for your changes:
+- Create a branch for your changes:
 
-        git checkout -b my_feature
+```
+git checkout -b my_feature
+```
 
-3. Make any changes
+- Make any changes
+- Write unit and integration tests to support those changes.
+- Run the tests:
 
-4. Write unit and integration tests to support those changes.
+```
+KITCHEN_LOCAL_YAML=.kitchen.dokken.yml chef exec delivery local all
+```
 
-5. Run the tests:
-    - `chef exec delivery local all`
-    - `KITCHEN_LOCAL_YAML=.kitchen.dokken.yml chef exec delivery local all`
-
-6. If tests pass, open a Pull Request on GitHub
+- If tests pass, open a Pull Request on GitHub
