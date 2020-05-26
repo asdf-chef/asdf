@@ -15,7 +15,7 @@ module Asdf
       when "amazon", "fedora", "rhel"
         asdf_deps.concat %w(bzip2 libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
       when "debian"
-        asdf_deps.concat %w(libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
+        asdf_deps.concat %w(bsdmainutils libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
       end
 
       package asdf_deps
