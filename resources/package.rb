@@ -1,17 +1,7 @@
-property :package, String,
-         description: "Which package to install.",
-         name_property: true
-
-property :version, String,
-         description: "Which package version to install.",
-         required: true
-
-property :live_stream, [true, false],
-         description: "Whether or not to output verbose stream.",
-         default: true
-
-property :user, String,
-         description: "Which user to run asdf code as."
+property :package, String, name_property: true
+property :version, String, required: true
+property :live_stream, [true, false], default: true
+property :user, String
 
 action :install do
   install_package_deps

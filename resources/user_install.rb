@@ -1,21 +1,8 @@
-property :user, String,
-         description: "Which user to install asdf to.",
-         name_property: true
-
-property :git_url, String,
-         description: "Git url to checkout asdf from.",
-         default: "https://github.com/asdf-vm/asdf.git"
-
-property :git_ref, String,
-         description: "Git reference to checkout."
-
-property :update_asdf, [true, false],
-         description: "Whether or not to update asdf.",
-         default: true
-
-property :legacy_version_file, [true, false],
-         description: "Whether or not to use legacy version files.",
-         default: false
+property :user, String, name_property: true
+property :git_url, String, default: "https://github.com/asdf-vm/asdf.git"
+property :git_ref, String
+property :update_asdf, [true, false], default: true
+property :legacy_version_file, [true, false], default: false
 
 action :install do
   install_asdf_deps

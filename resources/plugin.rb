@@ -1,12 +1,6 @@
-property :git_url, String,
-         description: "Git url to checkout plugin from."
-
-property :live_stream, [true, false],
-         description: "Whether or not to output verbose stream.",
-         default: true
-
-property :user, String,
-         description: "Which user to run asdf code as."
+property :git_url, String
+property :live_stream, [true, false], default: true
+property :user, String
 
 action :add do
   asdf_script "plugin-add #{new_resource.name}" do
