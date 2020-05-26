@@ -1,9 +1,3 @@
-#
-# Cookbook:: asdf
-# Library:: package_helpers
-#
-# Copyright:: 2017-2018, 1000Bulbs, All Rights Reserved.
-
 module Asdf
   module PackageHelpers
     def install_asdf_deps
