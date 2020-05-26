@@ -1,2 +1,2 @@
-ignore: |
-  ./.kitchen/
+---
+ignore: ./.kitchen/

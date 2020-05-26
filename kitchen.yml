@@ -3,10 +3,9 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
   product_name: chef
-  solo_rb:
-    treat_deprecation_warnings_as_errors: true
+  chef_license: accept
 
 verifier:
   name: inspec
