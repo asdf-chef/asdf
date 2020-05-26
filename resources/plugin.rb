@@ -1,12 +1,12 @@
 property :git_url, String,
-         description: 'Git url to checkout plugin from.'
+         description: "Git url to checkout plugin from."
 
 property :live_stream, [true, false],
-         description: 'Whether or not to output verbose stream.',
+         description: "Whether or not to output verbose stream.",
          default: true
 
 property :user, String,
-         description: 'Which user to run asdf code as.'
+         description: "Which user to run asdf code as."
 
 action :add do
   asdf_script "plugin-add #{new_resource.name}" do
@@ -37,6 +37,6 @@ action_class do
   end
 
   def plugin_can_be_updated?
-    new_resource.name == '--all' || new_resource.name != '--all' && plugin_installed?
+    new_resource.name == "--all" || new_resource.name != "--all" && plugin_installed?
   end
 end
