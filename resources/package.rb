@@ -8,6 +8,7 @@ action :install do
 
   asdf_script "install #{new_resource.package} #{new_resource.version}" do
     live_stream new_resource.live_stream
+    user new_resource.user if new_resource.user
     not_if { package_version_exists? }
   end
 end
@@ -15,6 +16,7 @@ end
 action :global do
   asdf_script "global #{new_resource.package} #{new_resource.version}" do
     live_stream new_resource.live_stream
+    user new_resource.user if new_resource.user
     only_if { package_version_exists? }
   end
 end
@@ -22,6 +24,7 @@ end
 action :uninstall do
   asdf_script "uninstall #{new_resource.package} #{new_resource.version}" do
     live_stream new_resource.live_stream
+    user new_resource.user if new_resource.user
     only_if { package_version_exists? }
   end
 end
