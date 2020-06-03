@@ -23,13 +23,13 @@ workflows:
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
-          name: default-debian-8
-          suite: default-debian-8
+          name: default-debian-9
+          suite: default-debian-9
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
-          name: default-debian-9
-          suite: default-debian-9
+          name: default-debian-10
+          suite: default-debian-10
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
