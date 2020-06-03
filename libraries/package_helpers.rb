@@ -169,7 +169,7 @@ module Asdf
     def python_deps
       case node["platform_family"]
       when "amazon", "fedora", "rhel"
-        %w(openssl-dev zlib-devel readline-devel sqlite-devel wget curl llvm)
+        %w(openssl-devel zlib-devel readline-devel sqlite-devel wget curl llvm)
       when "debian"
         %w(libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils tk-dev)
       end
