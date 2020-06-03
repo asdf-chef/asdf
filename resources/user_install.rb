@@ -24,10 +24,17 @@ action :install do
     action :create_if_missing
   end
 
+  if new_resource.update_asdf && ::Dir.exist?(user_asdf_path)
+    directory user_asdf_path do
+      recursive true
+      action :delete
+    end
+  end
+
   git user_asdf_path do
     repository new_resource.git_url
     revision new_resource.git_ref if new_resource.git_ref
-    action :checkout if new_resource.update_asdf == false
+    action :checkout unless new_resource.update_asdf
     user new_resource.user
     group new_resource.user
     notifies :run, "ruby_block[Add asdf to PATH]", :immediately
