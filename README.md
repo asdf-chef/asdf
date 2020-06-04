@@ -19,6 +19,7 @@ The following platforms are supported and tested with Test Kitchen:
 - Debian 8+
 - Fedora 27+
 - Ubuntu 16.04+
+- openSUSE Leap
 
 Other Debian and RHEL family distributions are assumed to work.
 

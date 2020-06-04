@@ -3,11 +3,13 @@ module Asdf
     def install_asdf_deps
       build_essential "asdf"
 
-      asdf_deps = %w(automake git grep libtool mlocate unzip)
+      asdf_deps = %w(automake bzip2 git grep libtool mlocate unzip)
 
       case node["platform_family"]
       when "amazon", "fedora", "rhel"
-        asdf_deps.concat %w(bzip2 libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
+        asdf_deps.concat %w(libffi-devel libxslt-devel libyaml-devel readline-devel openssl-devel unixODBC-devel)
+      when "suse"
+        asdf_deps.concat %w(libffi-devel libxslt-devel libyaml-devel readline-devel libopenssl-devel unixODBC-devel)
       when "debian"
         asdf_deps.concat %w(bsdmainutils libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
       end

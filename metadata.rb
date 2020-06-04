@@ -9,8 +9,16 @@ chef_version ">= 14.3"
 issues_url "https://github.com/asdf-chef/asdf/issues"
 source_url "https://github.com/asdf-chef/asdf"
 
-%w(amazon centos debian fedora oracle redhat scientific ubuntu).each do |os|
-  supports os
-end
+supports "debian"
+supports "ubuntu"
+supports "amazon"
+supports "centos"
+supports "redhat"
+supports "fedora"
+supports "scientific"
+supports "freebsd"
+supports "suse"
+supports "opensuse"
+supports "opensuseleap"
 
 depends "ark"

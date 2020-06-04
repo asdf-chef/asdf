@@ -74,3 +74,8 @@ platforms:
       intermediate_instructions:
         - RUN /usr/bin/apt-get -y update
         - RUN /usr/bin/apt-get install -y sudo
+
+  - name: opensuse-leap-15
+    driver:
+      image: dokken/opensuse-leap-15
+      pid_one_command: /bin/systemd

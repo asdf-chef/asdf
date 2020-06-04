@@ -52,3 +52,8 @@ workflows:
           suite: default-ubuntu-1804
           requires:
             *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-opensuse-leap-15
+          suite: default-opensuse-leap-15
+          requires:
+            *lint_and_unit
