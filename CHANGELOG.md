@@ -1,10 +1,23 @@
 # asdf CHANGELOG
 
-## [v0.5.1](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-08-05)
+## [v1.0.0](https://github.com/asdf-chef/asdf/tree/v1.0.0) (2020-06-04)
+
+* [[`5f48f06abc`](https://github.com/asdf-chef/asdf/commit/5f48f06abc)] - Add support for openSUSE (Fernando Alemán)
+* [[`eafeb116b7`](https://github.com/asdf-chef/asdf/commit/eafeb116b7)] - Remove Debian 8 and add Debian 10 to CI (Fernando Alemán)
+* [[`6dab3ea1da`](https://github.com/asdf-chef/asdf/commit/6dab3ea1da)] - Fix bug when using multiple users (Fernando Alemán)
+* [[`153e4be4e6`](https://github.com/asdf-chef/asdf/commit/153e4be4e6)] - Fix bug on user install (Fernando Alemán)
+* [[`057f7e2ee3`](https://github.com/asdf-chef/asdf/commit/057f7e2ee3)] - Fix python package helper (Fernando Alemán)
+* [[`9fb3789fa1`](https://github.com/asdf-chef/asdf/commit/9fb3789fa1)] - Cleanup more files (Fernando Alemán)
+* [[`0c3a9fa099`](https://github.com/asdf-chef/asdf/commit/0c3a9fa099)] - Fix plugin command on Debian platform (Fernando Alemán)
+* [[`6cd42df769`](https://github.com/asdf-chef/asdf/commit/6cd42df769)] - Remove description from resources since they are already in documentation (Fernando Alemán)
+* [[`da7cbad979`](https://github.com/asdf-chef/asdf/commit/da7cbad979)] - Cleanup files with rubocop (Fernando Alemán)
+* [[`9766679f41`](https://github.com/asdf-chef/asdf/commit/9766679f41)] - Cleanup cookbook (Fernando Alemán)
+
+## [v0.5.1](https://github.com/asdf-chef/asdf/tree/v0.5.1) (2019-08-05)
 
 * [[`cdc8fdbf56`](https://github.com/asdf-chef/asdf/commit/cdc8fdbf56)] - Fix yaml spacing (Fernando Alemán)
 
-## [v0.5.0](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-08-05)
+## [v0.5.0](https://github.com/asdf-chef/asdf/tree/v0.5.0) (2019-08-05)
 
 * [[`e080c4002b`](https://github.com/asdf-chef/asdf/commit/e080c4002b)] - Add circleci and remove travis-ci (Fernando Alemán)
 * [[`fe59fafbd6`](https://github.com/asdf-chef/asdf/commit/fe59fafbd6)] - Update exec resource (Fernando Alemán)
@@ -29,7 +42,7 @@
 * [[`65afae019b`](https://github.com/asdf-chef/asdf/commit/65afae019b)] - Enable live\_stream by default (Fernando Alemán)
 * [[`0790753795`](https://github.com/asdf-chef/asdf/commit/0790753795)] - Add Amazon Linux 2 to Travis CI (Fernando Aleman)
 
-## [v0.4.2](https://github.com/asdf-chef/asdf/tree/v0.4.1) (2019-01-21)
+## [v0.4.2](https://github.com/asdf-chef/asdf/tree/v0.4.2) (2019-01-21)
 
 * [[`8d48ca9d58`](https://github.com/asdf-chef/asdf/commit/8d48ca9d58)] - Amazon Linux 2 can now be tested (Fernando Aleman)
 * [[`06a2d1415c`](https://github.com/asdf-chef/asdf/commit/06a2d1415c)] - Fixed git_ref where it was not getting latest version (Fernando Aleman)
