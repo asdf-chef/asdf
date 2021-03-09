@@ -15,7 +15,7 @@
 
 ### Requirements
 
-- Latest ChefDK
+- [Chef Workstation](https://downloads.chef.io/tools/workstation)
 - [Docker](https://www.docker.com/docker-mac)
 - [Vagrant](https://vagrantup.com)
 - [VirtualBox](https://virtualbox.org)
