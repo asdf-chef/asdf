@@ -41,11 +41,11 @@ A `asdf_user_install` is required so that asdf is installed. See `Resources` bel
 
 ## Resources
 
-- [asdf_user_install](./documentation/resources/user_install.md)
-- [asdf_script](./documentation/resources/script.md)
-- [asdf_plugin](./documentation/resources/plugin.md)
-- [asdf_package](./documentation/resources/package.md)
-- [asdf_exec](./documentation/resources/exec.md)
+- [asdf_user_install](https://github.com/asdf-chef/asdf/blob/master/documentation/asdf_user_install.md)
+- [asdf_script](https://github.com/asdf-chef/asdf/blob/master/documentation/asdf_script.md)
+- [asdf_plugin](https://github.com/asdf-chef/asdf/blob/master/documentation/asdf_plugin.md)
+- [asdf_package](https://github.com/asdf-chef/asdf/blob/master/documentation/asdf_package.md)
+- [asdf_exec](https://github.com/asdf-chef/asdf/blob/master/documentation/asdf_exec.md)
 
 ## Testing
 
