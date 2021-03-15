@@ -35,7 +35,7 @@ Place a dependency on the asdf cookbook in your cookbook's metadata.rb
 depends 'asdf'
 ```
 
-Examples are provided in `test/cookbooks/test/recipes`.
+Examples are provided in `test/fixtures/cookbooks/test/recipes`.
 
 A `asdf_user_install` is required so that asdf is installed. See `Resources` below.
 
