@@ -1,12 +1,12 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "berkshelf"
-gem "chefspec"
-gem "cookstyle"
-gem "inspec"
-gem "kitchen-dokken"
-gem "kitchen-inspec"
-gem "kitchen-vagrant"
-gem "rubocop"
-gem "test-kitchen"
-gem "stove"
+gem 'berkshelf'
+gem 'chefspec'
+gem 'cookstyle'
+gem 'inspec'
+gem 'kitchen-dokken'
+gem 'kitchen-inspec'
+gem 'kitchen-vagrant'
+gem 'rubocop'
+gem 'test-kitchen'
+gem 'stove'

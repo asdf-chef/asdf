@@ -24,7 +24,7 @@ action_class do
 
   def script_code
     code = if /^asdf\s/ =~ new_resource.code
-             new_resource.code.split(" ").drop(1).join(" ")
+             new_resource.code.split(' ').drop(1).join(' ')
            else
              new_resource.code
            end
@@ -41,11 +41,11 @@ action_class do
     script.merge!(new_resource.environment) if new_resource.environment
 
     if new_resource.path
-      script_env["PATH"] = "#{new_resource.path.join(":")}:#{ENV["PATH"]}"
+      script_env['PATH'] = "#{new_resource.path.join(':')}:#{ENV['PATH']}"
     end
 
-    script_env["USER"] = asdf_user
-    script_env["HOME"] = ::File.expand_path("~#{asdf_user}")
+    script_env['USER'] = asdf_user
+    script_env['HOME'] = ::File.expand_path("~#{asdf_user}")
 
     script_env
   end

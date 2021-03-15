@@ -34,6 +34,6 @@ action_class do
   end
 
   def plugin_can_be_updated?
-    new_resource.name == "--all" || new_resource.name != "--all" && plugin_installed?
+    new_resource.name == '--all' || new_resource.name != '--all' && plugin_installed?
   end
 end

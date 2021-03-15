@@ -1,7 +1,7 @@
-source "https://supermarket.chef.io"
+source 'https://supermarket.chef.io'
 
 metadata
 
 group :integration do
-  cookbook "test", path: "test/cookbooks/test"
+  cookbook 'test', path: 'test/cookbooks/test'
 end

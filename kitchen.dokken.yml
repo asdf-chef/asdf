@@ -4,7 +4,7 @@ driver:
   privileged: true
   chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
   volumes:
-    - /sys/fs/cgroup:/sys/fs/cgroup
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 transport:
   name: dokken

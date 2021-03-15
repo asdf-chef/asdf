@@ -1,5 +1,5 @@
-require "chefspec"
-require "chefspec/berkshelf"
+require 'chefspec'
+require 'chefspec/berkshelf'
 
 RSpec.configure do |config|
   config.color     = true
@@ -7,9 +7,9 @@ RSpec.configure do |config|
 end
 
 def asdf_user
-  "vagrant"
+  'vagrant'
 end
 
 def asdf_path
-  "/home/vagrant/.asdf"
+  '/home/vagrant/.asdf'
 end
