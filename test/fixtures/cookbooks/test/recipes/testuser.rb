@@ -1,14 +1,9 @@
+group 'testuser'
+
 user 'testuser' do
+  gid 'testuser'
   shell '/bin/bash'
-end
-
-group 'testuser' do
-  members 'testuser'
-end
-
-directory '/home/testuser' do
-  owner 'testuser'
-  group 'testuser'
+  manage_home true
 end
 
 file '/etc/sudoers.d/testuser' do

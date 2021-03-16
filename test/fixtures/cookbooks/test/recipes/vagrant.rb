@@ -1,14 +1,9 @@
+group 'vagrant'
+
 user 'vagrant' do
+  gid 'vagrant'
   shell '/bin/bash'
-end
-
-group 'vagrant' do
-  members 'vagrant'
-end
-
-directory '/home/vagrant' do
-  owner 'vagrant'
-  group 'vagrant'
+  manage_home true
 end
 
 file '/etc/sudoers.d/vagrant' do

@@ -1,23 +1,18 @@
-property :code, String, name_property: true
-property :environment, Hash
-property :live_stream, [true, false], default: true
-property :path, Array, default: []
-property :returns, Array, default: [0]
-property :timeout, [Integer, Float], default: 3600
-property :user, String
+property :code, String,
+          name_property: true
 
-action :run do
-  bash new_resource.name do
-    code script_code
-    cwd ::File.expand_path("~#{asdf_user}")
-    environment(script_environment)
-    group asdf_user
-    live_stream new_resource.live_stream
-    returns new_resource.returns
-    timeout new_resource.timeout if new_resource.timeout
-    user asdf_user
-  end
-end
+property :environment, Hash
+
+property :path, Array,
+          default: []
+
+property :returns, Array,
+          default: [0]
+
+property :timeout, [Integer, Float],
+          default: 3600
+
+use 'common_properties'
 
 action_class do
   include Asdf::Cookbook::Helpers
@@ -45,8 +40,21 @@ action_class do
     end
 
     script_env['USER'] = asdf_user
-    script_env['HOME'] = ::File.expand_path("~#{asdf_user}")
+    script_env['HOME'] = asdf_user_home
 
     script_env
+  end
+end
+
+action :run do
+  bash new_resource.name do
+    code script_code
+    cwd asdf_user_home
+    environment(script_environment)
+    group asdf_user
+    live_stream new_resource.live_stream
+    returns new_resource.returns
+    timeout new_resource.timeout if new_resource.timeout
+    user asdf_user
   end
 end

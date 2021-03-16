@@ -4,14 +4,17 @@ property :git_ref, String
 property :update_asdf, [true, false], default: true
 property :legacy_version_file, [true, false], default: false
 
+action_class do
+  include Asdf::Cookbook::Helpers
+end
+
 action :install do
   install_asdf_deps
 
   execute 'updatedb'
 
   node.run_state['asdf_user'] = new_resource.user
-  home_dir = ::File.expand_path("~#{new_resource.user}")
-  user_asdf_path = ::File.join(home_dir, '.asdf')
+  user_asdf_path = ::File.join(asdf_user_home, '.asdf')
 
   node.run_state['asdf_path'] ||= {}
   node.run_state['asdf_path'][new_resource.user] ||= user_asdf_path
@@ -48,7 +51,7 @@ action :install do
     end
   end
 
-  file "#{home_dir}/.asdfrc" do
+  file ::File.join(asdf_user_home, '.asdfrc') do
     content "legacy_version_file = #{new_resource.legacy_version_file ? 'yes' : 'no'}"
     mode '0755'
     owner new_resource.user
@@ -80,8 +83,4 @@ action :install do
     not_if 'test -L /usr/bin/shasum'
     only_if { platform_family?('amazon', 'fedora', 'rhel') }
   end
-end
-
-action_class do
-  include Asdf::Cookbook::Helpers
 end

@@ -1,7 +1,18 @@
-property :package, String, name_property: true
-property :version, String, required: true
-property :live_stream, [true, false], default: true
-property :user, String
+property :package, String,
+          name_property: true
+
+property :version, String,
+          required: true
+
+use 'common_properties'
+
+action_class do
+  include Asdf::Cookbook::Helpers
+
+  def package_version_exists?
+    ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}")
+  end
+end
 
 action :install do
   install_package_deps
@@ -26,13 +37,5 @@ action :uninstall do
     live_stream new_resource.live_stream
     user new_resource.user if new_resource.user
     only_if { package_version_exists? }
-  end
-end
-
-action_class do
-  include Asdf::Cookbook::Helpers
-
-  def package_version_exists?
-    ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}")
   end
 end

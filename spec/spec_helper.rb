@@ -11,11 +11,3 @@ RSpec.configure do |config|
 
   Ohai::Config[:log_level] = :error
 end
-
-def asdf_user
-  'vagrant'
-end
-
-def asdf_path
-  '/home/vagrant/.asdf'
-end

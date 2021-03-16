@@ -1,17 +1,13 @@
 require 'spec_helper'
 
 describe 'asdf_user_install' do
-  step_into :asdf_user_install
   platform 'ubuntu'
+
+  step_into :asdf_user_install
 
   recipe do
     user 'vagrant'
     asdf_user_install 'vagrant'
-  end
-
-  before do
-    allow(File).to receive(:expand_path).and_call_original
-    allow(File).to receive(:expand_path).with('~vagrant').and_return('/home/vagrant')
   end
 
   it { is_expected.to run_execute('updatedb') }

@@ -6,12 +6,11 @@ describe 'asdf_script' do
   step_into :asdf_script
 
   recipe do
-    asdf_script 'update'
-  end
+    user 'vagrant'
 
-  before do
-    allow(File).to receive(:expand_path).and_call_original
-    allow(File).to receive(:expand_path).with('~vagrant').and_return('/home/vagrant')
+    asdf_script 'update' do
+      user 'vagrant'
+    end
   end
 
   it do

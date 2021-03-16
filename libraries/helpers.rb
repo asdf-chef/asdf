@@ -10,6 +10,10 @@ module Asdf
         new_resource.user || node.run_state['asdf_user']
       end
 
+      def asdf_user_home
+        asdf_user == 'root' ? '/root' : ::File.join('/home', asdf_user)
+      end
+
       def install_asdf_deps
         build_essential 'asdf'
 
