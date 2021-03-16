@@ -10,5 +10,5 @@ action :run do
 end
 
 action_class do
-  include Asdf::ScriptHelpers
+  include Asdf::Cookbook::Helpers
 end

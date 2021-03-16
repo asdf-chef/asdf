@@ -27,7 +27,7 @@ action :remove do
 end
 
 action_class do
-  include Asdf::ScriptHelpers
+  include Asdf::Cookbook::Helpers
 
   def plugin_installed?
     ::Dir.exist?("#{asdf_path}/plugins/#{new_resource.name}")

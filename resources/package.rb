@@ -30,8 +30,7 @@ action :uninstall do
 end
 
 action_class do
-  include Asdf::ScriptHelpers
-  include Asdf::PackageHelpers
+  include Asdf::Cookbook::Helpers
 
   def package_version_exists?
     ::Dir.exist?("#{asdf_path}/installs/#{new_resource.package}/#{new_resource.version}")

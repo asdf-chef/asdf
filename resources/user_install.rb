@@ -83,5 +83,5 @@ action :install do
 end
 
 action_class do
-  include Asdf::PackageHelpers
+  include Asdf::Cookbook::Helpers
 end

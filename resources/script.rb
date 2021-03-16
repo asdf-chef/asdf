@@ -20,7 +20,7 @@ action :run do
 end
 
 action_class do
-  include Asdf::ScriptHelpers
+  include Asdf::Cookbook::Helpers
 
   def script_code
     code = if /^asdf\s/ =~ new_resource.code
