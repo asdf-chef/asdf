@@ -11,8 +11,5 @@ describe 'asdf_package' do
     end
   end
 
-  it do
-    is_expected.to run_asdf_script('install ruby 2.6.3')
-      .with_live_stream(true)
-  end
+  it { is_expected.to run_asdf_script('install ruby 2.6.3') }
 end

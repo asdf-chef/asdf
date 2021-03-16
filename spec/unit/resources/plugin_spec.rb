@@ -14,8 +14,5 @@ describe 'asdf_plugin' do
     allow(Dir).to receive(:exist?).with('/home/vagrant/.asdf/plugins/ruby').and_return(false)
   end
 
-  it do
-    is_expected.to run_asdf_script('plugin-add ruby')
-      .with_live_stream(true)
-  end
+  it { is_expected.to run_asdf_script('plugin-add ruby') }
 end

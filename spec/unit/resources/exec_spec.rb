@@ -9,8 +9,5 @@ describe 'asdf_exec' do
     asdf_exec 'gem install pry'
   end
 
-  it do
-    is_expected.to run_asdf_script('exec gem install pry')
-      .with_live_stream(true)
-  end
+  it { is_expected.to run_asdf_script('exec gem install pry') }
 end
