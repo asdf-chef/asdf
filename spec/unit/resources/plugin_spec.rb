@@ -6,7 +6,11 @@ describe 'asdf_plugin' do
   step_into :asdf_plugin
 
   recipe do
-    asdf_plugin 'ruby'
+    user 'vagrant'
+
+    asdf_plugin 'ruby' do
+      user 'vagrant'
+    end
   end
 
   before do

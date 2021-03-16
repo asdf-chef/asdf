@@ -14,10 +14,6 @@ action :install do
   execute 'updatedb'
 
   node.run_state['asdf_user'] = new_resource.user
-  user_asdf_path = ::File.join(asdf_user_home, '.asdf')
-
-  node.run_state['asdf_path'] ||= {}
-  node.run_state['asdf_path'][new_resource.user] ||= user_asdf_path
 
   cookbook_file '/etc/profile.d/asdf.sh' do
     cookbook 'asdf'
@@ -27,14 +23,14 @@ action :install do
     action :create_if_missing
   end
 
-  if new_resource.update_asdf && ::Dir.exist?(user_asdf_path)
-    directory user_asdf_path do
+  if new_resource.update_asdf && ::Dir.exist?(asdf_path)
+    directory asdf_path do
       recursive true
       action :delete
     end
   end
 
-  git user_asdf_path do
+  git asdf_path do
     repository new_resource.git_url
     revision new_resource.git_ref if new_resource.git_ref
     action :checkout unless new_resource.update_asdf
@@ -44,7 +40,7 @@ action :install do
   end
 
   %w(installs plugins shims).each do |dir|
-    directory "#{user_asdf_path}/#{dir}" do
+    directory "#{asdf_path}/#{dir}" do
       owner new_resource.user
       group new_resource.user
       mode '0755'
@@ -61,19 +57,19 @@ action :install do
 
   ruby_block 'Add asdf to PATH' do
     block do
-      ENV['PATH'] = "#{user_asdf_path}/bin:#{user_asdf_path}/shims:#{ENV['PATH']}"
+      ENV['PATH'] = "#{asdf_path}/bin:#{asdf_path}/shims:#{ENV['PATH']}"
     end
     action :nothing
   end
 
   bash "Initialize user #{new_resource.user} asdf" do
-    code %(source #{user_asdf_path}/asdf.sh)
+    code %(source #{asdf_path}/asdf.sh)
     action :nothing
-    subscribes :run, "git[#{user_asdf_path}]", :immediately
+    subscribes :run, "git[#{asdf_path}]", :immediately
   end
 
   bash "Initialize user #{new_resource.user} asdf bash completion" do
-    code %(source #{user_asdf_path}/completions/asdf.bash)
+    code %(source #{asdf_path}/completions/asdf.bash)
     action :nothing
     subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
   end

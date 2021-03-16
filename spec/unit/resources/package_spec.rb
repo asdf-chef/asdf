@@ -6,8 +6,11 @@ describe 'asdf_package' do
   step_into :asdf_package
 
   recipe do
+    user 'vagrant'
+
     asdf_package 'ruby' do
       version '2.6.3'
+      user 'vagrant'
     end
   end
 

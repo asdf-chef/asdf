@@ -22,7 +22,7 @@ describe 'asdf_script' do
       .with_timeout(3600)
       .with_user('vagrant')
       .with_code <<~EOF
-        export PATH="/shims:/bin:$PATH"
+        export PATH="/home/vagrant/.asdf/shims:/home/vagrant/.asdf/bin:$PATH"
         source /etc/profile.d/asdf.sh
         asdf update
       EOF

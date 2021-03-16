@@ -2,8 +2,7 @@ module Asdf
   module Cookbook
     module Helpers
       def asdf_path
-        node.run_state['asdf_path'] ||= {}
-        node.run_state['asdf_path'][asdf_user]
+        ::File.join(asdf_user_home, '.asdf')
       end
 
       def asdf_user
