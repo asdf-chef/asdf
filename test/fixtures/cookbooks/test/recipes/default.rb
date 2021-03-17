@@ -21,7 +21,7 @@ end
 asdf_plugin 'ruby'
 
 asdf_package 'ruby' do
-  version '2.6.3'
+  version '3.0.0'
   action [:install, :global]
 end
 

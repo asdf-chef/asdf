@@ -9,10 +9,10 @@ describe 'asdf_package' do
     user 'vagrant'
 
     asdf_package 'ruby' do
-      version '2.6.3'
+      version '3.0.0'
       user 'vagrant'
     end
   end
 
-  it { is_expected.to run_asdf_script('install ruby 2.6.3') }
+  it { is_expected.to run_asdf_script('install ruby 3.0.0') }
 end
