@@ -15,16 +15,12 @@ describe 'asdf_script' do
 
   it do
     is_expected.to run_execute('update')
+      .with_command('asdf update')
       .with_cwd('/home/vagrant')
       .with_group('vagrant')
       .with_live_stream(true)
       .with_returns([0])
       .with_timeout(3600)
       .with_user('vagrant')
-      .with_command <<~EOF
-        export PATH="/home/vagrant/.asdf/shims:/home/vagrant/.asdf/bin:$PATH"
-        source /etc/profile.d/asdf.sh
-        asdf update
-      EOF
   end
 end

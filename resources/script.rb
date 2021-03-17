@@ -24,9 +24,7 @@ action_class do
              new_resource.code
            end
 
-    script = []
-    script << "asdf #{code}"
-    script.join("\n").concat("\n")
+    "asdf #{code}"
   end
 
   def script_environment
