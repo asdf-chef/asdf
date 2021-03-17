@@ -13,8 +13,17 @@ module Asdf
         asdf_user == 'root' ? '/root' : ::File.join('/home', asdf_user)
       end
 
+      def centos_8?
+        platform?('centos') && node['platform_version'].to_i == 8
+      end
+
       def install_asdf_deps
         build_essential 'asdf'
+
+        if centos_8?
+          package'dnf-plugins-core'
+          execute 'yum config-manager --set-enabled powertools'
+        end
 
         asdf_deps = %w(automake bzip2 git grep libtool mlocate unzip)
 
@@ -27,7 +36,11 @@ module Asdf
           asdf_deps.concat %w(bsdmainutils libffi-dev libreadline-dev libssl-dev libxslt-dev libyaml-dev unixodbc-dev)
         end
 
-        package asdf_deps
+        package asdf_deps do
+          flush_cache [:before]
+        end
+
+        execute 'yum config-manager --set-disabled powertools' if centos_8?
       end
 
       def install_package_deps
