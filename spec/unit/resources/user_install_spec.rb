@@ -14,7 +14,7 @@ describe 'asdf_user_install' do
   it { is_expected.to create_if_missing_cookbook_file('/etc/profile.d/asdf.sh') }
 
   it do
-    is_expected.to sync_git('/home/vagrant/.asdf')
+    is_expected.to checkout_git('/home/vagrant/.asdf')
       .with_repository('https://github.com/asdf-vm/asdf.git')
       .with_user('vagrant')
       .with_group('vagrant')

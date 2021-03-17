@@ -1,7 +1,7 @@
 property :user, String, name_property: true
 property :git_url, String, default: 'https://github.com/asdf-vm/asdf.git'
 property :git_ref, String
-property :update_asdf, [true, false], default: true
+property :update_asdf, [true, false], default: false
 property :legacy_version_file, [true, false], default: false
 
 action_class do
