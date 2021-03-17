@@ -37,7 +37,7 @@ module Asdf
         end
 
         package asdf_deps do
-          flush_cache [:before]
+          flush_cache [:before] if centos_8?
         end
 
         execute 'yum config-manager --set-disabled powertools' if centos_8?
