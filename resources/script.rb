@@ -17,7 +17,7 @@ use 'common_properties'
 action_class do
   include Asdf::Cookbook::Helpers
 
-  def script_code
+  def script_command
     code = if /^asdf\s/ =~ new_resource.code
              new_resource.code.split(' ').drop(1).join(' ')
            else
@@ -25,8 +25,6 @@ action_class do
            end
 
     script = []
-    script << %(export PATH="#{asdf_path}/shims:#{asdf_path}/bin:$PATH")
-    script << %(source /etc/profile.d/asdf.sh)
     script << "asdf #{code}"
     script.join("\n").concat("\n")
   end
@@ -47,10 +45,10 @@ action_class do
 end
 
 action :run do
-  bash new_resource.name do
-    code script_code
+  execute new_resource.name do
+    command script_command
     cwd asdf_user_home
-    environment(script_environment)
+    environment script_environment
     group asdf_user
     live_stream new_resource.live_stream
     returns new_resource.returns
