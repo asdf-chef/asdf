@@ -1,7 +1,7 @@
 # asdf Cookbook
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/asdf.svg)](https://supermarket.chef.io/cookbooks/asdf)
-[![Build Status](https://img.shields.io/circleci/project/github/asdf-chef/asdf/master.svg)](https://circleci.com/gh/asdf-chef/asdf)
+![ci](https://github.com/asdf-chef/asdf/workflows/ci/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Installs and configures [asdf](https://github.com/asdf-vm/asdf) extendable version manager.

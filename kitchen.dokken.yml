@@ -31,6 +31,13 @@ platforms:
       intermediate_instructions:
         - RUN /usr/bin/yum -y update
 
+  - name: centos-8
+    driver:
+      image: dokken/centos-8
+      pid_one_command: /usr/lib/systemd/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/yum -y update
+
   - name: debian-9
     driver:
       image: dokken/debian-9
@@ -45,27 +52,17 @@ platforms:
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
 
-  - name: fedora-27
+  - name: fedora-latest
     driver:
-      image: dokken/fedora-27
+      image: dokken/fedora-latest
       pid_one_command: /usr/lib/systemd/systemd
       intermediate_instructions:
         - RUN /usr/bin/yum -y update
 
-  - name: fedora-28
+  - name: opensuse-leap-15
     driver:
-      image: dokken/fedora-28
-      pid_one_command: /usr/lib/systemd/systemd
-      intermediate_instructions:
-        - RUN /usr/bin/yum -y update
-
-  - name: ubuntu-16.04
-    driver:
-      image: dokken/ubuntu-16.04
+      image: dokken/opensuse-leap-15
       pid_one_command: /bin/systemd
-      intermediate_instructions:
-        - RUN /usr/bin/apt-get -y update
-        - RUN /usr/bin/apt-get install -y sudo
 
   - name: ubuntu-18.04
     driver:
@@ -75,7 +72,10 @@ platforms:
         - RUN /usr/bin/apt-get -y update
         - RUN /usr/bin/apt-get install -y sudo
 
-  - name: opensuse-leap-15
+  - name: ubuntu-20.04
     driver:
-      image: dokken/opensuse-leap-15
+      image: dokken/ubuntu-20.04
       pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get -y update
+        - RUN /usr/bin/apt-get install -y sudo

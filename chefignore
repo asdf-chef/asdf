@@ -45,7 +45,6 @@ a.out
 
 # Testing #
 ###########
-.circleci/*
 .codeclimate.yml
 .foodcritic
 .kitchen*
