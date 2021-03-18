@@ -14,5 +14,5 @@ describe 'asdf_package' do
     end
   end
 
-  it { is_expected.to run_asdf_script('install ruby 3.0.0') }
+  it { is_expected.to run_asdf_script('asdf install ruby 3.0.0') }
 end

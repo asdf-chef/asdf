@@ -10,7 +10,7 @@ action_class do
 end
 
 action :run do
-  asdf_script "exec #{new_resource.command}" do
+  asdf_script "asdf exec #{new_resource.command}" do
     live_stream new_resource.live_stream
     user new_resource.user if new_resource.user
   end

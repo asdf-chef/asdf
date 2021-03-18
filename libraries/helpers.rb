@@ -13,6 +13,29 @@ module Asdf
         asdf_user == 'root' ? '/root' : ::File.join('/home', asdf_user)
       end
 
+      def script_code
+        script = []
+        script << %(export ASDF_PATH="#{asdf_path}")
+        script << %(export PATH="${ASDF_PATH}/shims:${ASDF_PATH}/bin:$PATH")
+        script << %(. /etc/profile.d/asdf.sh)
+        script << new_resource.code
+        script.join("\n").concat("\n")
+      end
+
+      def script_environment
+        script_env = { 'ASDF_PATH' => asdf_path }
+        script_env.merge!(new_resource.environment) if new_resource.environment
+
+        if new_resource.path
+          script_env['PATH'] = "#{new_resource.path.join(':')}:#{ENV['PATH']}"
+        end
+
+        script_env['USER'] = asdf_user
+        script_env['HOME'] = asdf_user_home
+
+        script_env
+      end
+
       def centos_8?
         platform?('centos') && node['platform_version'].to_i == 8
       end

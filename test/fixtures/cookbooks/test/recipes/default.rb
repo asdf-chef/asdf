@@ -4,7 +4,7 @@ include_recipe 'test::vagrant'
 
 asdf_user_install 'vagrant'
 
-asdf_script 'update'
+asdf_script 'asdf update'
 
 asdf_plugin 'clojure'
 

@@ -15,7 +15,7 @@ action_class do
 end
 
 action :add do
-  asdf_script "plugin add #{new_resource.name}" do
+  asdf_script "asdf plugin add #{new_resource.name}" do
     live_stream new_resource.live_stream
     user new_resource.user if new_resource.user
     not_if { plugin_installed? }
@@ -23,7 +23,7 @@ action :add do
 end
 
 action :update do
-  asdf_script "plugin update #{new_resource.name}" do
+  asdf_script "asdf plugin update #{new_resource.name}" do
     live_stream new_resource.live_stream
     user new_resource.user if new_resource.user
     only_if { plugin_can_be_updated? }
@@ -31,7 +31,7 @@ action :update do
 end
 
 action :remove do
-  asdf_script "plugin remove #{new_resource.name}" do
+  asdf_script "asdf plugin remove #{new_resource.name}" do
     live_stream new_resource.live_stream
     user new_resource.user if new_resource.user
     only_if { plugin_installed? }
