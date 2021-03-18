@@ -1,5 +1,31 @@
 # asdf CHANGELOG
 
+## [v2.0.0](https://github.com/asdf-chef/asdf/tree/v2.0.0) (2021-03-18)
+
+* [[`01a8404168`](https://github.com/asdf-chef/asdf/commit/01a8404168)] - Fix user\_install resource (Fernando Alemán)
+* [[`f5b986cef4`](https://github.com/asdf-chef/asdf/commit/f5b986cef4)] - Update script resource (Fernando Alemán)
+* [[`3f072a79a2`](https://github.com/asdf-chef/asdf/commit/3f072a79a2)] - Only use flush\_cache on centos 8 (Fernando Alemán)
+* [[`98961688b9`](https://github.com/asdf-chef/asdf/commit/98961688b9)] - Fix helpers for centos 8 (Fernando Alemán)
+* [[`4cd40bce00`](https://github.com/asdf-chef/asdf/commit/4cd40bce00)] - Change user\_install update to false by default (Fernando Alemán)
+* [[`76e1ffd86f`](https://github.com/asdf-chef/asdf/commit/76e1ffd86f)] - Fix script command (Fernando Alemán)
+* [[`813cf18445`](https://github.com/asdf-chef/asdf/commit/813cf18445)] - Remove circleci and add github actions for ci (Fernando Alemán)
+* [[`dc0b6d696c`](https://github.com/asdf-chef/asdf/commit/dc0b6d696c)] - Default package to install the latest version (Fernando Alemán)
+* [[`1a3e8ea136`](https://github.com/asdf-chef/asdf/commit/1a3e8ea136)] - Update script resource to use execute resource (Fernando Alemán)
+* [[`9842bd6d38`](https://github.com/asdf-chef/asdf/commit/9842bd6d38)] - Update asdf\_path (Fernando Alemán)
+* [[`86eb3cb751`](https://github.com/asdf-chef/asdf/commit/86eb3cb751)] - Update plugin commands (Fernando Alemán)
+* [[`5260d3e8f9`](https://github.com/asdf-chef/asdf/commit/5260d3e8f9)] - Update specs (Fernando Alemán)
+* [[`25f2e1cb84`](https://github.com/asdf-chef/asdf/commit/25f2e1cb84)] - Update resources and fix home directory (Fernando Alemán)
+* [[`958753ffca`](https://github.com/asdf-chef/asdf/commit/958753ffca)] - Update helpers library (Fernando Alemán)
+* [[`3e5dbe3b9b`](https://github.com/asdf-chef/asdf/commit/3e5dbe3b9b)] - Update documentation (Fernando Alemán)
+* [[`4c48813b7b`](https://github.com/asdf-chef/asdf/commit/4c48813b7b)] - Remove .yamllint (Fernando Alemán)
+* [[`b952c0fe51`](https://github.com/asdf-chef/asdf/commit/b952c0fe51)] - Update specs (Fernando Alemán)
+* [[`d8a2bccce8`](https://github.com/asdf-chef/asdf/commit/d8a2bccce8)] - Update delivery project.toml file (Fernando Alemán)
+* [[`8b2380caec`](https://github.com/asdf-chef/asdf/commit/8b2380caec)] - Remove stove gem (Fernando Alemán)
+* [[`798e0dd57a`](https://github.com/asdf-chef/asdf/commit/798e0dd57a)] - Update fixtures path (Fernando Alemán)
+* [[`5cb8294a2c`](https://github.com/asdf-chef/asdf/commit/5cb8294a2c)] - Remove rubocop and use cookstyle (Fernando Alemán)
+* [[`3e107fe450`](https://github.com/asdf-chef/asdf/commit/3e107fe450)] - Update markdown files (Fernando Alemán)
+* [[`d4d4835068`](https://github.com/asdf-chef/asdf/commit/d4d4835068)] - Add stove gem (Fernando Alemán)
+
 ## [v1.0.0](https://github.com/asdf-chef/asdf/tree/v1.0.0) (2020-06-04)
 
 * [[`5f48f06abc`](https://github.com/asdf-chef/asdf/commit/5f48f06abc)] - Add support for openSUSE (Fernando Alemán)

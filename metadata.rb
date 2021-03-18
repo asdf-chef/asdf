@@ -3,7 +3,7 @@ maintainer 'Fernando Aleman'
 maintainer_email 'fernandoaleman@mac.com'
 license 'Apache-2.0'
 description 'Installs and configures asdf'
-version '1.0.0'
+version '2.0.0'
 chef_version '>= 16'
 
 supports 'debian'
