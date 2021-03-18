@@ -1,8 +1,17 @@
-property :user, String, name_property: true
-property :git_url, String, default: 'https://github.com/asdf-vm/asdf.git'
-property :git_ref, String
-property :update_asdf, [true, false], default: false
-property :legacy_version_file, [true, false], default: false
+property :git_url, String,
+          default: 'https://github.com/asdf-vm/asdf.git'
+
+property :git_ref, String,
+          default: 'master'
+
+property :update_asdf, [true, false],
+          default: true
+
+property :legacy_version_file, [true, false],
+          default: false
+
+property :user, String,
+          name_property: true
 
 action_class do
   include Asdf::Cookbook::Helpers
@@ -23,17 +32,10 @@ action :install do
     action :create_if_missing
   end
 
-  if new_resource.update_asdf && ::Dir.exist?(asdf_path)
-    directory asdf_path do
-      recursive true
-      action :delete
-    end
-  end
-
   git asdf_path do
     repository new_resource.git_url
-    revision new_resource.git_ref if new_resource.git_ref
-    action :checkout unless new_resource.update_asdf
+    revision new_resource.git_ref
+    action :checkout if new_resource.update_asdf == false
     user new_resource.user
     group new_resource.user
     notifies :run, 'ruby_block[Add asdf to PATH]', :immediately
@@ -63,13 +65,13 @@ action :install do
   end
 
   bash "Initialize user #{new_resource.user} asdf" do
-    code %(source #{asdf_path}/asdf.sh)
+    code %(. #{asdf_path}/asdf.sh)
     action :nothing
     subscribes :run, "git[#{asdf_path}]", :immediately
   end
 
   bash "Initialize user #{new_resource.user} asdf bash completion" do
-    code %(source #{asdf_path}/completions/asdf.bash)
+    code %(. #{asdf_path}/completions/asdf.bash)
     action :nothing
     subscribes :run, "bash[Initialize user #{new_resource.user} asdf]", :immediately
   end
