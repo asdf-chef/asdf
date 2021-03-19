@@ -10,7 +10,7 @@
 | ------------- | -------------- | --------------- | ------------------------------------------------------------------- |
 | `code`        | String         | `name_property` | asdf command to run.                                                |
 | `environment` | Hash           | `{}`            | Environment variables to run script.                                |
-| `path`        | Array          | `[]`            | Additional path to include in environment path.                     |
+| `path`        | Array          | `[]`            | List of additional paths to include in environment path.            |
 | `returns`     | Array          | `[0]`           | Expected return code.                                               |
 | `timeout`     | Integer, Float | `3600`          | Amount of time (in seconds) a command is to wait before timing out. |
 | `live_stream` | True, False    | `true`          | Whether or not to output verbose stream.                            |
